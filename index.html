@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#123f32">
+  <meta name="description" content="رَفِيقُ الذِّكْرِ — أُنسٌ للقلب، وذكرٌ للرب">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <title>رَفِيقُ الذِّكْرِ</title>
+</head>
+<body>
+  <div class="intro-sparkles" id="introSparkles" aria-hidden="true"></div>
+  <header class="topbar">
+    <div class="brand-mark">ر</div>
+    <div>
+      <div class="brand-name">رَفِيقُ الذِّكْرِ</div>
+      <div class="brand-tag">أُنْسٌ لِلْقَلْبِ، وَذِكْرٌ لِلرَّبِّ</div>
+    </div>
+    <button class="icon-button" id="settingsBtn" aria-label="الإعدادات">⚙</button>
+  </header>
+
+  <main>
+    <section class="welcome-card">
+      <div class="welcome-glow"></div>
+      <p class="eyebrow">أهلًا بك في رفيق الذكر</p>
+      <h1>اجعل لروحك نصيبًا من السكينة</h1>
+      <p class="welcome-copy">خطوات صغيرة من الذكر والقرآن، تصنع يومًا عامرًا بالخير.</p>
+      <div class="date-line" id="todayDate"></div>
+    </section>
+
+    <section class="daily-card">
+      <div class="section-heading">
+        <span>🌿</span><h2>نفحة طمأنينة</h2>
+        <span class="small-label">رسالة اليوم</span>
+      </div>
+      <p class="daily-message" id="dailyMessage">﴿أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ﴾</p>
+      <p class="daily-source">سورة الرعد · الآية ٢٨</p>
+    </section>
+
+    <section class="prayer-card">
+      <div>
+        <p class="eyebrow">مواقيت الصلاة</p>
+        <h2>الصلاة القادمة</h2>
+        <p class="muted">سنضيف مواقيت مدينتك وإعدادات الأذان في المرحلة التالية.</p>
+      </div>
+      <div class="prayer-icon">☾</div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><h2>أقسام رفيق الذكر</h2><span class="small-label">اختر ما تحب</span></div>
+      <div class="menu-grid">
+        <button class="menu-card" data-section="quran"><span class="menu-icon">📖</span><b>القرآن الكريم</b><small>قراءة واستماع وتدبر</small></button>
+        <button class="menu-card" data-section="adhkar"><span class="menu-icon">🤲</span><b>الأذكار</b><small>الصباح والمساء وغيرها</small></button>
+        <button class="menu-card" data-section="tasbih"><span class="menu-icon">📿</span><b>المسبحة الإلكترونية</b><small>عداد الباقيات الصالحات</small></button>
+        <button class="menu-card" data-section="comfort"><span class="menu-icon">💌</span><b>رسائل الطمأنينة</b><small>رسائل يومية وسجل خاص</small></button>
+        <button class="menu-card" data-section="recitation"><span class="menu-icon">🎙️</span><b>تسميع القرآن</b><small>اقرأ وراجع تلاوتك</small></button>
+        <button class="menu-card" data-section="listen"><span class="menu-icon">🎧</span><b>استمع وافهم</b><small>تلاوة وتفسير موثوق</small></button>
+        <button class="menu-card" data-section="achievements"><span class="menu-icon">🌟</span><b>إنجازاتي</b><small>رحلتك مع القرآن والذكر</small></button>
+        <button class="menu-card" data-section="daily"><span class="menu-icon">✨</span><b>كنز اليوم وتحدي الخير</b><small>فائدة وعمل صالح</small></button>
+        <button class="menu-card" data-section="favorites"><span class="menu-icon">♡</span><b>مفضلتي</b><small>ما حفظته للرجوع إليه</small></button>
+        <button class="menu-card" data-section="friday"><span class="menu-icon">🕌</span><b>تذكيرات الجمعة</b><small>الكهف والدعاء والصلاة على النبي</small></button>
+      </div>
+    </section>
+
+    <section class="footer-note">
+      <span>✦</span> اللهم اجعل هذا التطبيق بابًا للخير والنفع.
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="active"><span>⌂</span>الرئيسية</button>
+    <button data-section="adhkar"><span>🤲</span>الأذكار</button>
+    <button data-section="quran"><span>📖</span>القرآن</button>
+    <button id="navSettings"><span>⚙</span>الإعدادات</button>
+  </nav>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
