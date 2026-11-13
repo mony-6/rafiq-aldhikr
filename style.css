@@ -517,3 +517,121 @@ body {
     0 0 22px #ffb700 !important;
 }
 
+
+/* ===== تحديث الألوان الملكية ===== */
+
+/* الأسود الفحمي والذهبي الثقيل */
+body[data-theme="black"] {
+  --main: #17120a;
+  --main-light: #493416;
+  --accent: #f5c451;
+  --accent-light: #ffe7a0;
+  --bg: #100e0a;
+  --card: #211b10;
+  --text: #fff2d2;
+  --muted: #d8c18f;
+  --border: #a47a2b;
+  --shadow: 0 8px 28px rgba(0,0,0,.45);
+}
+
+/* أخضر زمردي وذهبي أقوى */
+body[data-theme="green"] {
+  --main: #06452f;
+  --main-light: #087b50;
+  --accent: #edbd43;
+  --accent-light: #ffedaa;
+  --bg: #edf3e8;
+  --card: #fffdf5;
+  --text: #123b2b;
+  --border: #d8b75d;
+}
+
+/* وردي ملكي وروز جولد */
+body[data-theme="pink"] {
+  --main: #8d2858;
+  --main-light: #d34f86;
+  --accent: #e6a0a6;
+  --accent-light: #ffe0e5;
+  --bg: #fff0f5;
+  --card: #fffafd;
+  --text: #62223f;
+  --border: #e9a8c1;
+}
+
+/* أزرق ملكي وفضي */
+body[data-theme="blue"] {
+  --main: #123d79;
+  --main-light: #2878c5;
+  --accent: #c5dafa;
+  --accent-light: #eaf3ff;
+  --bg: #edf4ff;
+  --card: #fbfdff;
+  --text: #17365e;
+  --border: #9bbce5;
+}
+
+/* بنفسجي ملكي وذهبي */
+body[data-theme="purple"] {
+  --main: #49236f;
+  --main-light: #8050b5;
+  --accent: #e8c15b;
+  --accent-light: #fff0b8;
+  --bg: #f3edff;
+  --card: #fffaff;
+  --text: #41265e;
+  --border: #c5a2e5;
+}
+
+/* تركواز ونعناعي */
+body[data-theme="mint"] {
+  --main: #075e60;
+  --main-light: #13a69a;
+  --accent: #75dfc4;
+  --accent-light: #d4fff1;
+  --bg: #e7faf5;
+  --card: #fbfffd;
+  --text: #124d4d;
+  --border: #83d9c6;
+}
+
+/* رسالة الطمأنينة في الوضع الأسود */
+body[data-theme="black"] .daily-message {
+  color: #ffdf82 !important;
+  text-shadow: 0 0 10px rgba(245,196,81,.25);
+}
+
+body[data-theme="black"] .daily-source {
+  color: #e5d2a5 !important;
+}
+
+body[data-theme="black"] .daily-card,
+body[data-theme="black"] .prayer-card,
+body[data-theme="black"] .menu-card {
+  background: #211b10 !important;
+  color: #fff2d2 !important;
+  border-color: #a47a2b !important;
+}
+
+body[data-theme="black"] .menu-card b,
+body[data-theme="black"] .menu-card small,
+body[data-theme="black"] .section-heading h2 {
+  color: #fff0c5 !important;
+}
+
+/* منع بهتان الألوان عند الضغط */
+.menu-card.star-tap,
+.daily-card.star-tap,
+.prayer-card.star-tap {
+  animation: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* نجوم ذهبية من غير تبييض الخانات */
+.tap-star {
+  color: #fff8d7 !important;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 12px #ffd54a,
+    0 0 24px #ffad00 !important;
+}
