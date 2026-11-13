@@ -375,4 +375,145 @@ animation:tapStarFlash 1s ease-out forwards;
 .brand-name { font-size:16px; }
 .menu-grid { gap:8px; }
 .menu-card { min-height:120px; }
+} 
+
+/* ===== ألوان رفيق الذكر الملكية ===== */
+
+:root {
+  --main: #07533d;
+  --main-light: #16805c;
+  --accent: #e5b84e;
+  --accent-light: #fff0b8;
+  --bg: #f4f6e9;
+  --card: #fffdf3;
+  --text: #183d30;
+  --muted: #687d70;
+  --border: #e4d4a5;
+  --shadow: 0 8px 25px rgba(18,63,50,.13);
 }
+
+body[data-theme="green"] {
+  --main: #07533d;
+  --main-light: #16805c;
+  --accent: #e5b84e;
+  --bg: #f4f6e9;
+  --card: #fffdf3;
+  --text: #183d30;
+  --muted: #687d70;
+  --border: #e4d4a5;
+}
+
+body[data-theme="pink"] {
+  --main: #963d68;
+  --main-light: #d16c94;
+  --accent: #dca1a0;
+  --bg: #fff0f5;
+  --card: #fffafd;
+  --text: #60334d;
+  --muted: #98758a;
+  --border: #efc5d8;
+}
+
+body[data-theme="blue"] {
+  --main: #17477e;
+  --main-light: #3979b7;
+  --accent: #b9d5ee;
+  --bg: #edf5ff;
+  --card: #fbfdff;
+  --text: #203c60;
+  --muted: #7086a3;
+  --border: #c8dbf1;
+}
+
+body[data-theme="purple"] {
+  --main: #593579;
+  --main-light: #9062b5;
+  --accent: #e1bd67;
+  --bg: #f5efff;
+  --card: #fffaff;
+  --text: #49345f;
+  --muted: #89789d;
+  --border: #dfcbed;
+}
+
+body[data-theme="black"] {
+  --main: #171512;
+  --main-light: #40382b;
+  --accent: #e8bd56;
+  --bg: #211f1b;
+  --card: #302c25;
+  --text: #fff0ce;
+  --muted: #c9b995;
+  --border: #786039;
+}
+
+body[data-theme="mint"] {
+  --main: #126c69;
+  --main-light: #27a89a;
+  --accent: #9be2c8;
+  --bg: #e9faf5;
+  --card: #fbfffd;
+  --text: #185653;
+  --muted: #70948b;
+  --border: #bce8d9;
+}
+
+/* خلفية متناسقة */
+body {
+  background: var(--bg) !important;
+  color: var(--text);
+}
+
+/* الخانات */
+.menu-card,
+.daily-card,
+.prayer-card {
+  background: var(--card) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 7px 20px rgba(0,0,0,.08);
+}
+
+/* أسماء الخانات */
+.menu-card b,
+.menu-card small,
+.section-heading h2,
+.daily-card h2,
+.prayer-card h2 {
+  color: var(--text) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* لمعة ذهبية من غير تبييض الخانة */
+.menu-card.star-tap,
+.daily-card.star-tap,
+.prayer-card.star-tap {
+  animation: none !important;
+  filter: none !important;
+  box-shadow:
+    0 0 8px var(--accent),
+    0 0 18px var(--accent),
+    0 0 30px rgba(255,210,90,.45) !important;
+}
+
+/* الأزرار */
+.theme-option.selected {
+  border: 2px solid var(--accent) !important;
+  box-shadow: 0 0 15px var(--accent) !important;
+}
+
+.theme-reset {
+  background: var(--main) !important;
+  color: white !important;
+}
+
+/* نجوم واضحة */
+.tap-star {
+  color: #fff !important;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 12px #ffd84d,
+    0 0 22px #ffb700 !important;
+}
+
