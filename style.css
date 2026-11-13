@@ -128,84 +128,61 @@ body::before {
     opacity: 0;
   }
 }
-/* إطار النجوم اللامعة حول كل خانة */
+/* هالة النجوم القوية عند الضغط على الخانة */
 .menu-card,
 .daily-card,
 .prayer-card {
   position: relative;
   isolation: isolate;
-  overflow: visible !important;
   border-radius: 20px;
-  z-index: 0;
+  transition: .2s ease;
 }
 
-/* إطار مضيء يدور باستمرار */
-.menu-card::before,
-.daily-card::before,
-.prayer-card::before {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  border-radius: inherit;
-  padding: 3px;
-  background: conic-gradient(
-    from 0deg,
-    #fffbdc,
-    #eac34e,
-    #ffffff,
-    #00e6a0,
-    #ffe36b,
-    #ffffff,
-    #d6a52e,
-    #fffbdc
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  filter: drop-shadow(0 0 5px #ffe47a)
-          drop-shadow(0 0 12px #e8c879)
-          drop-shadow(0 0 18px #00d99a);
-  animation: starFrameSpin 3s linear infinite;
-  pointer-events: none;
-  z-index: -1;
+/* توهج ملون حول مربع الخانة */
+.menu-card:active,
+.daily-card:active,
+.prayer-card:active {
+  transform: scale(.97);
+  box-shadow:
+    0 0 8px 4px #fff,
+    0 0 18px 8px #ffe45c,
+    0 0 30px 12px #ffbf00,
+    0 0 45px 15px #00ffc3,
+    inset 0 0 18px #fff3a0;
+  animation: brightStarPress .7s ease-in-out infinite alternate;
 }
 
-/* بريق النجوم */
-.menu-card::after,
-.daily-card::after,
-.prayer-card::after {
-  content: "✦  ✧  ✦  ✧  ✦";
+/* إطار مضيء وقت الضغط */
+.menu-card:active::before,
+.daily-card:active::before,
+.prayer-card:active::before {
+  content: "✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧";
   position: absolute;
-  inset: -9px;
-  border-radius: inherit;
-  color: #fff4b0;
-  font-size: 13px;
-  letter-spacing: 9px;
+  inset: -12px;
+  border: 3px solid #ffe66b;
+  border-radius: 24px;
+  color: #fff;
+  font-size: 19px;
+  letter-spacing: 5px;
   text-shadow:
     0 0 5px #fff,
-    0 0 10px #ffe16b,
-    0 0 18px #e6b93d,
-    0 0 25px #00e6a0;
-  animation: starFrameGlow 1.2s ease-in-out infinite alternate;
+    0 0 12px #ffdf42,
+    0 0 22px #ffae00,
+    0 0 30px #00ffc3;
+  box-shadow:
+    0 0 12px #fff,
+    0 0 25px #ffdf42,
+    0 0 40px #00ffc3;
   pointer-events: none;
-  z-index: 2;
+  animation: brightStarSpin 2s linear infinite;
+  z-index: 5;
 }
 
-@keyframes starFrameSpin {
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes brightStarPress {
+  from { filter: brightness(1.2); }
+  to { filter: brightness(2); }
 }
 
-@keyframes starFrameGlow {
-  from {
-    opacity: .55;
-    filter: brightness(1);
+@keyframes brightStarSpin {
+  to { transform: rotate(360deg); }
   }
-  to {
-    opacity: 1;
-    filter: brightness(2);
-  }
-}
