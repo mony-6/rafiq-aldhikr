@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&display=swap');
 
 :root {
@@ -10,7 +11,7 @@
   --text: #24352d;
   --muted: #78847c;
   --border: rgba(217,174,82,.35);
-  --shadow: 0 8px 28px rgba(18,63,50,.10);
+  --shadow: 0 8px 24px rgba(18,63,50,.09);
   --glow: rgba(255,221,130,.35);
 }
 
@@ -24,7 +25,7 @@ body[data-theme="pink"] {
   --text: #4a2938;
   --muted: #927785;
   --border: rgba(193,109,145,.3);
-  --shadow: 0 8px 28px rgba(140,61,99,.10);
+  --shadow: 0 8px 24px rgba(140,61,99,.09);
   --glow: rgba(255,205,225,.4);
 }
 
@@ -38,7 +39,7 @@ body[data-theme="blue"] {
   --text: #20364b;
   --muted: #71869a;
   --border: rgba(52,126,181,.28);
-  --shadow: 0 8px 28px rgba(23,77,124,.10);
+  --shadow: 0 8px 24px rgba(23,77,124,.09);
   --glow: rgba(190,224,255,.4);
 }
 
@@ -52,7 +53,7 @@ body[data-theme="purple"] {
   --text: #342747;
   --muted: #817493;
   --border: rgba(128,96,174,.28);
-  --shadow: 0 8px 28px rgba(86,59,125,.10);
+  --shadow: 0 8px 24px rgba(86,59,125,.09);
   --glow: rgba(220,200,255,.4);
 }
 
@@ -66,7 +67,7 @@ body[data-theme="black"] {
   --text: #3b2c20;
   --muted: #8b7968;
   --border: rgba(128,96,68,.28);
-  --shadow: 0 8px 28px rgba(70,48,30,.10);
+  --shadow: 0 8px 24px rgba(70,48,30,.09);
   --glow: rgba(255,220,150,.35);
 }
 
@@ -80,7 +81,7 @@ body[data-theme="mint"] {
   --text: #214541;
   --muted: #718e89;
   --border: rgba(54,155,145,.28);
-  --shadow: 0 8px 28px rgba(23,108,105,.10);
+  --shadow: 0 8px 24px rgba(23,108,105,.09);
   --glow: rgba(190,245,230,.4);
 }
 
@@ -94,7 +95,7 @@ body[data-theme="blackgold"] {
   --text: #fff3d5;
   --muted: #c1b69d;
   --border: rgba(230,189,89,.4);
-  --shadow: 0 8px 30px rgba(0,0,0,.35);
+  --shadow: 0 8px 26px rgba(0,0,0,.3);
   --glow: rgba(230,189,89,.18);
 }
 
@@ -106,6 +107,7 @@ body[data-theme="blackgold"] {
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -118,6 +120,7 @@ body {
   font-family: 'Cairo', sans-serif;
   transition: background .3s ease, color .3s ease;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 button {
@@ -130,6 +133,7 @@ button:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
+
 /* الشريط العلوي */
 .topbar {
   position: relative;
@@ -140,7 +144,7 @@ button:focus-visible {
   background: linear-gradient(135deg, var(--main), var(--main-light));
   color: #fff;
   border-bottom: 2px solid var(--accent);
-  box-shadow: 0 5px 22px rgba(0,0,0,.16);
+  box-shadow: 0 5px 18px rgba(0,0,0,.14);
 }
 
 .brand-mark {
@@ -207,7 +211,7 @@ main {
   border-radius: 25px;
   background: linear-gradient(135deg, var(--main), var(--main-light));
   color: #fff;
-  box-shadow: 0 12px 30px rgba(0,0,0,.15);
+  box-shadow: 0 12px 26px rgba(0,0,0,.13);
 }
 
 .welcome-glow {
@@ -330,7 +334,7 @@ main {
   background: var(--glow);
   color: var(--accent);
   font-size: 31px;
-} 
+}
 
 /* عنوان الأقسام */
 .section {
@@ -427,7 +431,7 @@ main {
   line-height: 1.7;
 }
 
-/* حركة لمعان النجوم */
+/* حركة لمعان النجوم - محفوظة كما هي */
 @keyframes starTwinkle {
   0%, 100% {
     opacity: .45;
@@ -467,6 +471,7 @@ main {
   color: var(--accent);
   text-shadow: 0 0 9px var(--accent);
 }
+
 /* شريط التنقل السفلي */
 .bottom-nav {
   position: fixed;
@@ -480,7 +485,7 @@ main {
   padding: 9px 5px calc(9px + env(safe-area-inset-bottom));
   border-top: 1px solid var(--accent);
   background: var(--card);
-  box-shadow: 0 -5px 22px rgba(0,0,0,.10);
+  box-shadow: 0 -5px 18px rgba(0,0,0,.09);
 }
 
 .bottom-nav button {
@@ -535,7 +540,7 @@ main {
   border-radius: 23px;
   background: var(--card);
   color: var(--text);
-  box-shadow: 0 15px 45px rgba(0,0,0,.3);
+  box-shadow: 0 15px 40px rgba(0,0,0,.27);
 }
 
 .theme-heading {
@@ -602,7 +607,8 @@ main {
   background: var(--main);
   color: white;
   font-weight: 700;
-} 
+}
+
 /* رسائل التنبيه */
 .toast {
   position: fixed;
@@ -652,7 +658,7 @@ main {
   border-radius: 22px;
   background: var(--card);
   color: var(--text);
-  box-shadow: 0 15px 40px rgba(0,0,0,.3);
+  box-shadow: 0 15px 36px rgba(0,0,0,.27);
 }
 
 .settings-box h2 {
@@ -710,7 +716,7 @@ main {
   color: var(--main);
 }
 
-/* نجوم زخرفية أعلى الصفحة */
+/* النجوم الزخرفية أعلى الصفحة - بدون تقليل */
 .intro-sparkles {
   position: fixed;
   z-index: -1;
@@ -793,13 +799,17 @@ body[data-theme="blackgold"] .daily-source {
   }
 }
 
-/* تقليل الحركة لمن يفضل ذلك */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: .01ms !important;
-    transition-duration: .01ms !important;
+/* تحسين الأداء مع الحفاظ على النجوم */
+@media (hover: hover) and (pointer: fine) {
+  .menu-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
   }
-} 
+}
+
+/* احترام إعداد تقليل الحركة في الجهاز */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
