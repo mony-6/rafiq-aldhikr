@@ -1,0 +1,11 @@
+{
+  "name": "رَفِيقُ الذِّكْرِ",
+  "short_name": "رفيق الذكر",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f7f5ed",
+  "theme_color": "#123f32",
+  "description": "أُنسٌ للقلب، وذكرٌ للرب"
+}
