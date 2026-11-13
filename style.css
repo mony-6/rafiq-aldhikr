@@ -635,3 +635,69 @@ body[data-theme="black"] .section-heading h2 {
     0 0 12px #ffd54a,
     0 0 24px #ffad00 !important;
 }
+
+/* =================================
+   الأسود الملكي والذهب الخالص
+================================= */
+
+body[data-theme="blackgold"] {
+  --main: #080808;
+  --main-light: #171717;
+  --accent: #e8bd55;
+  --accent-light: #ffe9a3;
+  --bg: #050505;
+  --card: #151515;
+  --text: #fff4d6;
+  --muted: #d6c69e;
+  --border: #bd9135;
+
+  background: #050505 !important;
+  color: #fff4d6 !important;
+}
+
+body[data-theme="blackgold"] .topbar,
+body[data-theme="blackgold"] .bottom-nav,
+body[data-theme="blackgold"] .menu-card,
+body[data-theme="blackgold"] .welcome-card,
+body[data-theme="blackgold"] .daily-card,
+body[data-theme="blackgold"] .prayer-card,
+body[data-theme="blackgold"] .theme-box,
+body[data-theme="blackgold"] .settings-box {
+  background: linear-gradient(145deg, #080808, #1b1b1b) !important;
+  color: #fff0c2 !important;
+  border: 1px solid #bd9135 !important;
+}
+
+body[data-theme="blackgold"] h1,
+body[data-theme="blackgold"] h2,
+body[data-theme="blackgold"] h3,
+body[data-theme="blackgold"] b,
+body[data-theme="blackgold"] .brand-name,
+body[data-theme="blackgold"] .menu-card small,
+body[data-theme="blackgold"] .daily-message,
+body[data-theme="blackgold"] .muted,
+body[data-theme="blackgold"] p {
+  color: #ffe6a0 !important;
+}
+
+body[data-theme="blackgold"] .icon-button,
+body[data-theme="blackgold"] .theme-option,
+body[data-theme="blackgold"] .settings-action {
+  background: #17130a !important;
+  color: #ffdf80 !important;
+  border: 1px solid #d6a83e !important;
+}
+
+body[data-theme="blackgold"] .menu-card,
+body[data-theme="blackgold"] .daily-card,
+body[data-theme="blackgold"] .prayer-card {
+  box-shadow:
+    0 0 8px rgba(232,189,85,.35),
+    0 0 18px rgba(232,189,85,.16) !important;
+}
+
+body[data-theme="blackgold"] .theme-option.selected,
+body[data-theme="blackgold"] .theme-option.active {
+  background: linear-gradient(135deg, #d5a637, #fff0ad) !important;
+  color: #080808 !important;
+}
