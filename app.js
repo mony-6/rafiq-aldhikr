@@ -242,6 +242,7 @@ const labels = {
   favorites: 'مفضلتي',
   friday: 'تذكيرات الجمعة'
 };
+
 // الأقسام
 document.querySelectorAll('[data-section]').forEach(button => {
   button.addEventListener('click', () => {
@@ -258,14 +259,22 @@ document.querySelectorAll('[data-section]').forEach(button => {
   });
 });
 
-// الألوان الستة
+// الألوان السبعة
 const themeBtn = $('#themeBtn');
 const themePanel = $('#themePanel');
 const closeTheme = $('#closeTheme');
 const resetTheme = $('#resetTheme');
 const themeOptions = document.querySelectorAll('[data-theme-choice]');
 
-const themes = ['green', 'pink', 'blue', 'purple', 'black', 'mint'];
+const themes = [
+  'green',
+  'pink',
+  'blue',
+  'purple',
+  'black',
+  'mint',
+  'blackgold'
+];
 
 function applyTheme(theme) {
   const selectedTheme = themes.includes(theme) ? theme : 'green';
