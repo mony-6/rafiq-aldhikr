@@ -1,8 +1,8 @@
+
 const $ = (selector) => document.querySelector(selector);
 
 // التاريخ
 const dateElement = $('#todayDate');
-
 if (dateElement) {
   dateElement.textContent = new Intl.DateTimeFormat('ar-EG', {
     weekday: 'long',
@@ -22,7 +22,6 @@ const dailyMessages = [
 ];
 
 const messageElement = $('#dailyMessage');
-
 if (messageElement) {
   messageElement.textContent =
     dailyMessages[new Date().getDate() % dailyMessages.length];
@@ -43,9 +42,9 @@ function showToast(message) {
 }
 
 // النجوم
-const starsContainer = $('#stars');
+const starsContainer = $('#introSparkles');
 
-if (starsContainer) {
+if (starsContainer && !starsContainer.children.length) {
   for (let i = 0; i < 100; i++) {
     const star = document.createElement('span');
     star.className = 'star';
@@ -63,54 +62,49 @@ document.addEventListener('pointerdown', (event) => {
   sparkle.style.left = event.clientX + 'px';
   sparkle.style.top = event.clientY + 'px';
   document.body.appendChild(sparkle);
-
   setTimeout(() => sparkle.remove(), 700);
 });
 
-// تغيير الألوان
-const themeButtons = document.querySelectorAll('[data-theme]');
+// تغيير المظهر
+const themePanel = $('#themePanel');
+const themeBtn = $('#themeBtn');
+const closeTheme = $('#closeTheme');
+const resetTheme = $('#resetTheme');
 
-themeButtons.forEach((button) => {
+if (themeBtn && themePanel) {
+  themeBtn.addEventListener('click', () => {
+    themePanel.hidden = false;
+  });
+}
+
+if (closeTheme && themePanel) {
+  closeTheme.addEventListener('click', () => {
+    themePanel.hidden = true;
+  });
+}
+
+document.querySelectorAll('[data-theme-choice]').forEach((button) => {
   button.addEventListener('click', () => {
-    const theme = button.dataset.theme;
+    const theme = button.dataset.themeChoice;
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('rafiqTheme', theme);
+    if (themePanel) themePanel.hidden = true;
     showToast('تم تغيير المظهر');
   });
 });
 
-const savedTheme = localStorage.getItem('rafiqTheme');
+if (resetTheme) {
+  resetTheme.addEventListener('click', () => {
+    document.documentElement.setAttribute('data-theme', 'green');
+    localStorage.setItem('rafiqTheme', 'green');
+    if (themePanel) themePanel.hidden = true;
+    showToast('تمت إعادة المظهر');
+  });
+}
 
+const savedTheme = localStorage.getItem('rafiqTheme');
 if (savedTheme) {
   document.documentElement.setAttribute('data-theme', savedTheme);
-}
-
-// حجم الخط
-const fontButtons = document.querySelectorAll('[data-font]');
-
-fontButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const size = button.dataset.font;
-    document.documentElement.style.setProperty('--font-size', size);
-    showToast('تم تغيير حجم الخط');
-  });
-});
-
-// نافذة الإعدادات
-const settingsButton = $('#settingsButton');
-const settingsModal = $('#settingsModal');
-const settingsClose = $('#settingsClose');
-
-if (settingsButton && settingsModal) {
-  settingsButton.addEventListener('click', () => {
-    settingsModal.hidden = false;
-  });
-}
-
-if (settingsClose && settingsModal) {
-  settingsClose.addEventListener('click', () => {
-    settingsModal.hidden = true;
-  });
 }
 
 // أسماء سور القرآن الكريم
@@ -133,8 +127,12 @@ const surahs = [
 'الإخلاص','الفلق','الناس'
 ];
 
-// عرض السور
+// صفحة القرآن
+const quranPage = $('#quranPage');
+const mainPage = $('main');
+const quranBack = $('#quranBack');
 const surahList = $('#surahList');
+const surahSearch = $('#surahSearch');
 
 function renderSurahs(filter = '') {
   if (!surahList) return;
@@ -170,25 +168,10 @@ function renderSurahs(filter = '') {
   });
 }
 
-renderSurahs();
-
-// البحث عن سورة
-const surahSearch = $('#surahSearch');
-
-if (surahSearch) {
-  surahSearch.addEventListener('input', () => {
-    renderSurahs(surahSearch.value.trim());
-  });
-}
-
-// فتح صفحة القرآن
-const quranPage = $('#quranPage');
-const mainPage = $('main');
-const quranBack = $('#quranBack');
-
 function openQuran() {
   if (mainPage) mainPage.hidden = true;
   if (quranPage) quranPage.hidden = false;
+  if (surahSearch) surahSearch.value = '';
   renderSurahs();
   window.scrollTo(0, 0);
 }
@@ -203,38 +186,43 @@ if (quranBack) {
   quranBack.addEventListener('click', closeQuran);
 }
 
-// أزرار الانتقال للقرآن
-document.querySelectorAll('[data-page="quran"]').forEach((button) => {
-  button.addEventListener('click', openQuran);
-});
-
-// أزرار الأقسام الأخرى
-document.querySelectorAll('[data-page]').forEach((button) => {
-  if (button.dataset.page === 'quran') return;
-
-  button.addEventListener('click', () => {
-    showToast('القسم ده هيتضاف قريبًا بإذن الله');
+if (surahSearch) {
+  surahSearch.addEventListener('input', () => {
+    renderSurahs(surahSearch.value.trim());
   });
-});
-
-// حفظ إعدادات التذكير
-const reminderToggle = $('#reminderToggle');
-
-if (reminderToggle) {
-  reminderToggle.addEventListener('change', () => {
-    localStorage.setItem(
-      'rafiqReminders',
-      reminderToggle.checked ? 'on' : 'off'
-    );
-  });
-
-  reminderToggle.checked =
-    localStorage.getItem('rafiqReminders') === 'on';
 }
+
+renderSurahs();
+
+// أزرار الأقسام الرئيسية والسفلية
+document.querySelectorAll('[data-section]').forEach((button) => {
+  button.addEventListener('click', () => {
+    const section = button.dataset.section;
+
+    if (section === 'quran') {
+      openQuran();
+    } else {
+      showToast('سيتم تجهيز هذا القسم قريبًا بإذن الله');
+    }
+  });
+});
+
+// زر الإعدادات
+function openSettings() {
+  showToast('إعدادات التطبيق');
+}
+
+const settingsBtn = $('#settingsBtn');
+const navSettings = $('#navSettings');
+
+if (settingsBtn) settingsBtn.addEventListener('click', openSettings);
+if (navSettings) navSettings.addEventListener('click', openSettings);
 
 // تشغيل التطبيق
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(() => {});
+    navigator.serviceWorker.register('./sw.js').catch((error) => {
+      console.log('Service Worker:', error);
+    });
   });
 }
