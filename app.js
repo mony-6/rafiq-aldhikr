@@ -242,11 +242,16 @@ const labels = {
   favorites: 'مفضلتي',
   friday: 'تذكيرات الجمعة'
 };
-
 // الأقسام
 document.querySelectorAll('[data-section]').forEach(button => {
   button.addEventListener('click', () => {
     const key = button.dataset.section;
+
+    if (key === 'settings') {
+      openSettings();
+      return;
+    }
+
     showToast(
       'سنجهّز قسم «' + (labels[key] || 'القسم') + '» في المرحلة التالية'
     );
