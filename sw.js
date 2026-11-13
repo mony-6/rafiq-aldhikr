@@ -1,4 +1,4 @@
-const CACHE = 'rafiq-aldhikr-v5';
+const CACHE = 'rafiq-aldhikr-v6';
 
 const ASSETS = [
   './',
@@ -30,9 +30,7 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   if (event.request.method === 'GET') {
     event.respondWith(
-      caches.match(event.request).then(response => {
-        return response || fetch(event.request);
-      })
+      fetch(event.request).catch(() => caches.match(event.request))
     );
   }
 });
