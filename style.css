@@ -47,4 +47,55 @@ main{max-width:760px;margin:auto;padding:18px}
 .rain-star{position:absolute;top:-12px;width:4px;height:4px;border-radius:50%;background:#e8c879;box-shadow:0 0 8px 2px #e8c879;animation:rain 2.1s linear forwards}
 @keyframes rain{to{transform:translateY(110vh) translateX(-18px);opacity:0}}
 @media(min-width:600px){.menu-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.welcome-card{padding:30px}.welcome-card h1{font-size:28px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}} 
+
+/* نجوم ذهبية لامعة حول كل التطبيق */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  opacity: .55;
+  background-image:
+    radial-gradient(circle, #fff4c4 1px, transparent 2px),
+    radial-gradient(circle, #e8c879 1.2px, transparent 2px),
+    radial-gradient(circle, #ffffff 1px, transparent 2px),
+    radial-gradient(circle, #d9b65e 1px, transparent 2px);
+  background-size: 47px 53px, 71px 67px, 89px 79px, 61px 83px;
+  background-position: 5px 9px, 22px 31px, 43px 17px, 11px 49px;
+  animation: starTwinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes starTwinkle {
+  0% { opacity: .25; }
+  50% { opacity: .8; }
+  100% { opacity: .4; }
+}
+
+/* هالات لامعة حول البطاقات */
+.menu-card,
+.daily-card,
+.prayer-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-card::after,
+.daily-card::after,
+.prayer-card::after {
+  content: "✦";
+  position: absolute;
+  top: 9px;
+  left: 12px;
+  color: #d5aa48;
+  font-size: 15px;
+  text-shadow: 0 0 8px #f4d77d, 0 0 15px #e8c879;
+  animation: littleStar 2s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes littleStar {
+  from { opacity: .35; transform: scale(.7) rotate(0deg); }
+  to { opacity: 1; transform: scale(1.25) rotate(35deg); }
+}
