@@ -1,194 +1,378 @@
 @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&display=swap');
-:root{--green:#123f32;--green2:#1d5946;--gold:#e8c879;--cream:#f7f5ed;--ink:#20372f;--muted:#738078}
-*{box-sizing:border-box}
-body{margin:0;background:var(--cream);color:var(--ink);font-family:'Cairo',sans-serif;padding-bottom:92px;overflow-x:hidden}
-.topbar{display:flex;align-items:center;gap:12px;padding:17px 18px;background:var(--green);color:#fff;position:sticky;top:0;z-index:5;box-shadow:0 4px 18px #102f2522}
-.brand-mark{width:43px;height:43px;border:1px solid #e8c879;border-radius:14px;display:grid;place-items:center;color:var(--gold);font-family:'Amiri',serif;font-size:28px}
-.brand-name{font-weight:800;font-size:18px;color:#fff}
-.brand-tag{font-size:10px;color:#e6d9b7}
-.icon-button{margin-right:auto;border:1px solid #ffffff35;background:#ffffff12;color:#fff;border-radius:12px;width:40px;height:40px;font-size:20px}
-main{max-width:760px;margin:auto;padding:18px}
-.welcome-card{background:linear-gradient(135deg,#123f32,#28644d);border-radius:25px;padding:24px 21px;color:white;position:relative;overflow:hidden;box-shadow:0 12px 28px #123f3222}
-.welcome-glow{position:absolute;width:190px;height:190px;border-radius:50%;background:#e8c87920;left:-65px;top:-80px;filter:blur(3px)}
-.eyebrow{font-size:12px;color:#e8d8a9;margin:0 0 7px}
-.welcome-card h1{font-size:23px;line-height:1.6;margin:0 0 7px;position:relative}
-.welcome-copy{font-size:13px;color:#e4eee8;line-height:1.9;margin:0;max-width:90%}
-.date-line{margin-top:16px;font-size:11px;color:#e8c879}
-.daily-card,.prayer-card{background:#fff;border:1px solid #e9e5d8;border-radius:20px;padding:17px;margin-top:15px;box-shadow:0 5px 18px #253c3010}
-.section-heading{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.section-heading h2{font-size:16px;margin:0;font-weight:800}
-.small-label{font-size:10px;color:#8c927e;margin-right:auto}
-.daily-message{font-family:'Amiri',serif;font-size:22px;line-height:1.8;color:#245b43;margin:4px 0}
-.daily-source{font-size:11px;color:#8a907f;margin:0}
-.prayer-card{display:flex;align-items:center;justify-content:space-between;background:#f0f4eb}
-.prayer-card h2{font-size:17px;margin:0 0 5px}
-.muted{font-size:11px;color:var(--muted);margin:0;line-height:1.8}
-.prayer-icon{width:54px;height:54px;border-radius:18px;background:#dce9dc;color:#28644d;display:grid;place-items:center;font-size:28px}
-.section{margin-top:23px}
-.menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
-.menu-card{border:1px solid #e9e5d8;background:white;border-radius:18px;padding:15px 12px;text-align:right;display:flex;flex-direction:column;gap:5px;min-height:112px;color:var(--ink);font-family:inherit;position:relative;overflow:hidden;transition:transform .15s}
-.menu-card:active{transform:scale(.98)}
-.menu-icon{font-size:24px;margin-bottom:3px}
-.menu-card b{font-size:13px}
-.menu-card small{font-size:10px;color:#879087}
-.footer-note{text-align:center;color:#8b8f7f;font-size:11px;padding:25px 5px 10px}
-.footer-note span{color:#c69e43}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e9e5d8;display:flex;justify-content:space-around;padding:9px 8px calc(9px + env(safe-area-inset-bottom));z-index:6}
-.bottom-nav button{border:0;background:none;color:#818a81;font-family:inherit;font-size:10px;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:55px}
-.bottom-nav button span{font-size:19px}
-.bottom-nav button.active{color:#1e6048;font-weight:800}
-.toast{position:fixed;bottom:85px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#123f32;color:#fff;padding:11px 17px;border-radius:14px;font-size:12px;z-index:20;transition:.25s;white-space:nowrap;box-shadow:0 5px 20px #0002}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-.spark{position:fixed;width:5px;height:5px;border-radius:50%;background:#f4d98b;box-shadow:0 0 7px 2px #f4d98b99;pointer-events:none;z-index:30;animation:sparkle .75s ease-out forwards}
-.spark:after{content:"";position:absolute;inset:-3px;background:linear-gradient(90deg,transparent 45%,#fff 48%,#fff 52%,transparent 55%),linear-gradient(0deg,transparent 45%,#fff 48%,#fff 52%,transparent 55%);opacity:.8}
-@keyframes sparkle{0%{opacity:0;transform:scale(.3)}25%{opacity:1;transform:scale(1.2)}100%{opacity:0;transform:translateY(-13px) scale(.1)}}
-.intro-sparkles{position:fixed;inset:0;pointer-events:none;z-index:15;overflow:hidden;animation:introFade 2.5s forwards}
-@keyframes introFade{0%,65%{opacity:1}100%{opacity:0;visibility:hidden}}
-.rain-star{position:absolute;top:-12px;width:4px;height:4px;border-radius:50%;background:#e8c879;box-shadow:0 0 8px 2px #e8c879;animation:rain 2.1s linear forwards}
-@keyframes rain{to{transform:translateY(110vh) translateX(-18px);opacity:0}}
-@media(min-width:600px){.menu-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.welcome-card{padding:30px}.welcome-card h1{font-size:28px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}} 
 
-/* نجوم ذهبية لامعة حول كل التطبيق */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 10;
-  opacity: .55;
-  background-image:
-    radial-gradient(circle, #fff4c4 1px, transparent 2px),
-    radial-gradient(circle, #e8c879 1.2px, transparent 2px),
-    radial-gradient(circle, #ffffff 1px, transparent 2px),
-    radial-gradient(circle, #d9b65e 1px, transparent 2px);
-  background-size: 47px 53px, 71px 67px, 89px 79px, 61px 83px;
-  background-position: 5px 9px, 22px 31px, 43px 17px, 11px 49px;
-  animation: starTwinkle 3s ease-in-out infinite alternate;
+:root {
+--main:#123f32; --main-light:#1e6650;
+--accent:#d9ae52; --accent-light:#ffe8a3;
+--bg:#f6f3e9; --card:#fff; --text:#173b30;
+--muted:#78877e; --border:#e8dfc9;
+--shadow:0 8px 25px rgba(18,63,50,.10);
 }
 
-@keyframes starTwinkle {
-  0% { opacity: .25; }
-  50% { opacity: .8; }
-  100% { opacity: .4; }
+body[data-theme="pink"] {
+--main:#873e63; --main-light:#b86688;
+--accent:#d99c9f; --accent-light:#ffe1e4;
+--bg:#fff2f5; --card:#fff; --text:#66334e;
+--muted:#987987; --border:#f1d6e0;
 }
 
-/* هالات لامعة حول البطاقات */
-.menu-card,
-.daily-card,
+body[data-theme="blue"] {
+--main:#183d70; --main-light:#32639b;
+--accent:#b9cce3; --accent-light:#e5f1ff;
+--bg:#eef4fc; --card:#fff; --text:#1d3556;
+--muted:#71839b; --border:#d7e3f2;
+}
+
+body[data-theme="purple"] {
+--main:#50336f; --main-light:#7953a0;
+--accent:#d8b56b; --accent-light:#f8e8b8;
+--bg:#f5effb; --card:#fff; --text:#49315f;
+--muted:#897a99; --border:#e5d9f0;
+}
+
+body[data-theme="black"] {
+--main:#171717; --main-light:#34302a;
+--accent:#e5bd60; --accent-light:#ffedb5;
+--bg:#211f1b; --card:#302d27; --text:#fff1d0;
+--muted:#c2b79e; --border:#655638;
+}
+
+body[data-theme="mint"] {
+--main:#176d70; --main-light:#279b91;
+--accent:#8ed8bd; --accent-light:#d5fff0;
+--bg:#eaf9f5; --card:#fff; --text:#185653;
+--muted:#71948c; --border:#cdebe2;
+}
+
+- { box-sizing:border-box; }
+
+body {
+margin:0; padding:0 0 85px;
+background:var(--bg); color:var(--text);
+font-family:'Cairo',sans-serif;
+transition:background .35s,color .35s;
+overflow-x:hidden;
+}
+
+button { font-family:inherit; cursor:pointer; }
+
+.topbar {
+min-height:76px;
+background:linear-gradient(120deg,var(--main),var(--main-light));
+color:white; display:flex; align-items:center;
+gap:12px; padding:12px 17px; box-shadow:var(--shadow);
+}
+
+.brand-mark {
+width:45px; height:45px; border:2px solid var(--accent);
+border-radius:15px; display:grid; place-items:center;
+font-family:'Amiri',serif; font-size:30px;
+color:var(--accent-light);
+}
+
+.brand-name { font-size:19px; font-weight:800; }
+.brand-tag { font-size:10px; color:var(--accent-light); }
+
+.header-actions {
+margin-right:auto; display:flex; gap:8px;
+}
+
+.icon-button {
+width:39px; height:39px;
+border:1px solid rgba(255,255,255,.35);
+border-radius:12px; background:rgba(255,255,255,.13);
+color:white; font-size:19px;
+}
+
+main { width:min(100% - 26px,650px); margin:18px auto; }
+
+.welcome-card {
+position:relative; overflow:hidden; padding:24px 20px;
+border-radius:23px; color:white;
+background:linear-gradient(135deg,var(--main),var(--main-light));
+box-shadow:var(--shadow);
+}
+
+.welcome-glow {
+position:absolute; width:180px; height:180px;
+border-radius:50%; background:var(--accent);
+opacity:.13; left:-65px; top:-80px; filter:blur(12px);
+}
+
+.eyebrow { font-size:12px; color:var(--accent); margin:0 0 8px; }
+.welcome-card h1 { font-size:23px; line-height:1.7; margin:5px 0; }
+.welcome-copy { font-size:13px; line-height:1.9; color:#f5eee0; }
+.date-line { font-size:12px; color:var(--accent-light); margin-top:15px; }
+
+.daily-card,.prayer-card {
+position:relative; overflow:visible;
+background:var(--card); border:1px solid var(--border);
+border-radius:20px; padding:17px; margin:15px 0;
+box-shadow:var(--shadow); color:var(--text);
+}
+
+.section-heading {
+display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+}
+
+.section-heading h2,.prayer-card h2 { font-size:17px; margin:0; }
+.small-label { margin-right:auto; color:var(--muted); font-size:11px; }
+.daily-message {
+font-family:'Amiri',serif; font-size:23px;
+text-align:center; line-height:2; color:var(--main);
+}
+.daily-source { text-align:center; color:var(--muted); font-size:11px; }
+
 .prayer-card {
-  position: relative;
-  overflow: hidden;
+display:flex; justify-content:space-between; align-items:center; gap:10px;
+}
+.muted { color:var(--muted); font-size:12px; line-height:1.8; }
+.prayer-icon { font-size:36px; color:var(--accent); }
+
+.section { margin-top:25px; }
+.section > .section-heading { margin-bottom:13px; }
+
+.menu-grid {
+display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px;
 }
 
-.menu-card::after,
-.daily-card::after,
-.prayer-card::after {
-  content: "✦";
-  position: absolute;
-  top: 9px;
-  left: 12px;
-  color: #d5aa48;
-  font-size: 15px;
-  text-shadow: 0 0 8px #f4d77d, 0 0 15px #e8c879;
-  animation: littleStar 2s ease-in-out infinite alternate;
-  pointer-events: none;
+.menu-card {
+position:relative; isolation:isolate; overflow:visible;
+min-height:130px; padding:15px 8px;
+border:1px solid var(--border); border-radius:19px;
+background:var(--card); color:var(--text);
+box-shadow:var(--shadow); display:flex;
+flex-direction:column; align-items:center; justify-content:center;
+gap:7px; transition:transform .2s,background .3s;
 }
 
-@keyframes littleStar {
-  from { opacity: .35; transform: scale(.7) rotate(0deg); }
-  to { opacity: 1; transform: scale(1.25) rotate(35deg); }
+.menu-card:active { transform:scale(.96); }
+.menu-icon { font-size:27px; }
+.menu-card b { font-size:13px; }
+.menu-card small { font-size:10px; color:var(--muted); text-align:center; }
+
+.footer-note {
+text-align:center; color:var(--muted);
+font-size:12px; padding:25px 5px;
 }
-/* نجوم متلألئة قوية ومتنوعة */
+.footer-note span { color:var(--accent); }
+
+.bottom-nav {
+position:fixed; z-index:50; bottom:0; left:0; right:0;
+display:flex; justify-content:space-around; align-items:center;
+padding:9px 3px calc(9px + env(safe-area-inset-bottom));
+background:var(--card); border-top:1px solid var(--border);
+box-shadow:0 -5px 20px rgba(0,0,0,.06);
+}
+
+.bottom-nav button {
+border:0; background:transparent; color:var(--muted);
+font-size:10px; display:flex; flex-direction:column;
+align-items:center; gap:3px;
+}
+.bottom-nav button span { font-size:19px; }
+.bottom-nav button.active { color:var(--main); font-weight:800; }
+
+/* لوحة اختيار الألوان */
+.theme-panel {
+position:fixed;
+inset:0;
+z-index:200;
+background:rgba(0,0,0,.65);
+display:flex;
+align-items:center;
+justify-content:center;
+padding:18px;
+}
+
+.theme-panel[hidden] { display:none; }
+
+.theme-box {
+width:100%;
+max-width:420px;
+max-height:85vh;
+overflow-y:auto;
+background:var(--card);
+color:var(--text);
+border:1px solid var(--accent);
+border-radius:24px;
+padding:20px;
+box-shadow:0 0 35px rgba(0,0,0,.3);
+}
+
+.theme-heading {
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+}
+
+.theme-heading h2 {
+font-size:18px;
+margin:0;
+}
+
+#closeTheme {
+border:0;
+background:var(--bg);
+color:var(--text);
+border-radius:10px;
+width:35px;
+height:35px;
+font-size:17px;
+}
+
+.theme-box > p {
+color:var(--muted);
+font-size:12px;
+}
+
+.theme-options {
+display:grid;
+grid-template-columns:1fr;
+gap:10px;
+margin:18px 0;
+}
+
+.theme-option {
+display:flex;
+align-items:center;
+gap:12px;
+padding:13px;
+border:1px solid var(--border);
+border-radius:14px;
+background:var(--bg);
+color:var(--text);
+font-size:13px;
+text-align:right;
+transition:.2s;
+}
+
+.theme-option span { font-size:22px; }
+
+.theme-option:active {
+transform:scale(.97);
+}
+
+.theme-option.selected {
+border:2px solid var(--accent);
+box-shadow:0 0 14px var(--accent);
+font-weight:800;
+}
+
+.theme-reset {
+width:100%;
+padding:13px;
+border:0;
+border-radius:13px;
+background:var(--main);
+color:white;
+font-size:13px;
+font-weight:700;
+}
+
+/* رسالة التنبيه */
+.toast {
+position:fixed;
+z-index:300;
+bottom:90px;
+left:50%;
+transform:translate(-50%,15px);
+opacity:0;
+pointer-events:none;
+background:var(--main);
+color:white;
+padding:12px 18px;
+border-radius:14px;
+font-size:12px;
+transition:.25s;
+text-align:center;
+width:max-content;
+max-width:90%;
+}
+
+.toast.show {
+opacity:1;
+transform:translate(-50%,0);
+}
+
+/* نجوم متلألئة */
+.intro-sparkles {
+position:fixed;
+inset:0;
+pointer-events:none;
+overflow:hidden;
+z-index:100;
+}
+
 .rain-star {
-  position: absolute;
-  top: -20px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #fff8d6;
-  box-shadow:
-    0 0 8px 3px #ffe68a,
-    0 0 16px 6px #e8c879,
-    0 0 25px 8px #ffffff88;
-  animation: rain 3s linear forwards;
-  pointer-events: none;
+position:absolute;
+top:-20px;
+width:5px;
+height:5px;
+border-radius:50%;
+background:#ffe58a;
+box-shadow:0 0 7px #fff,0 0 15px #ffd34d;
+animation:rain 2.5s linear forwards;
 }
 
 @keyframes rain {
-  0% {
-    transform: translateY(0) rotate(0deg) scale(.5);
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(110vh) translateX(-35px) rotate(360deg) scale(1.5);
-    opacity: 0;
-  }
-}
-/* هالة النجوم القوية عند الضغط على الخانة */
-.menu-card,
-.daily-card,
-.prayer-card {
-  position: relative;
-  isolation: isolate;
-  border-radius: 20px;
-  transition: .2s ease;
+to { transform:translateY(110vh) rotate(180deg); opacity:0; }
 }
 
-/* توهج ملون حول مربع الخانة */
-.menu-card:active,
-.daily-card:active,
-.prayer-card:active {
-  transform: scale(.97);
-  box-shadow:
-    0 0 8px 4px #fff,
-    0 0 18px 8px #ffe45c,
-    0 0 30px 12px #ffbf00,
-    0 0 45px 15px #00ffc3,
-    inset 0 0 18px #fff3a0;
-  animation: brightStarPress .7s ease-in-out infinite alternate;
+.spark {
+position:fixed;
+z-index:150;
+pointer-events:none;
+color:#ffe58a;
+font-size:18px;
+text-shadow:0 0 8px #fff,0 0 17px #ffd34d;
+animation:sparkMove .8s ease-out forwards;
 }
 
-/* إطار مضيء وقت الضغط */
-.menu-card:active::before,
-.daily-card:active::before,
-.prayer-card:active::before {
-  content: "✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧";
-  position: absolute;
-  inset: -12px;
-  border: 3px solid #ffe66b;
-  border-radius: 24px;
-  color: #fff;
-  font-size: 19px;
-  letter-spacing: 5px;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 12px #ffdf42,
-    0 0 22px #ffae00,
-    0 0 30px #00ffc3;
-  box-shadow:
-    0 0 12px #fff,
-    0 0 25px #ffdf42,
-    0 0 40px #00ffc3;
-  pointer-events: none;
-  animation: brightStarSpin 2s linear infinite;
-  z-index: 5;
+@keyframes sparkMove {
+0% { opacity:1; transform:scale(.4); }
+100% { opacity:0; transform:scale(1.8) translateY(-18px); }
 }
 
-@keyframes brightStarPress {
-  from { filter: brightness(1.2); }
-  to { filter: brightness(2); }
+.menu-card.star-tap,
+.daily-card.star-tap,
+.prayer-card.star-tap {
+box-shadow:
+0 0 12px #fff,
+0 0 25px #ffe45c,
+0 0 40px #ffb700,
+0 0 55px #00ffc3 !important;
+animation:cardLightBurst 1s ease-out;
 }
 
-@keyframes brightStarSpin {
-  to { transform: rotate(360deg); }
-  }
-/* إصلاح ظهور النجوم خارج حدود الخانات */
-.menu-card,
-.daily-card,
-.prayer-card {
-  overflow: visible !important;
+.tap-star {
+position:absolute;
+z-index:20;
+color:#fff;
+font-size:19px;
+pointer-events:none;
+text-shadow:
+0 0 5px #fff,
+0 0 12px #ffe45c,
+0 0 22px #ffae00,
+0 0 30px #00ffc3;
+animation:tapStarFlash 1s ease-out forwards;
+}
+
+@keyframes cardLightBurst {
+0% { filter:brightness(1); }
+35% { filter:brightness(1.8) scale(1.02); }
+100% { filter:brightness(1); }
+}
+
+@keyframes tapStarFlash {
+0% { opacity:0; transform:scale(.2) rotate(0); }
+25% { opacity:1; transform:scale(1.7) rotate(90deg); }
+100% { opacity:0; transform:scale(.3) rotate(220deg); }
+}
+
+@media (max-width:360px) {
+.brand-name { font-size:16px; }
+.menu-grid { gap:8px; }
+.menu-card { min-height:120px; }
 }
