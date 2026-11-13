@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
@@ -11,13 +12,17 @@
 </head>
 <body>
   <div class="intro-sparkles" id="introSparkles" aria-hidden="true"></div>
+
   <header class="topbar">
     <div class="brand-mark">ر</div>
     <div>
       <div class="brand-name">رَفِيقُ الذِّكْرِ</div>
       <div class="brand-tag">أُنْسٌ لِلْقَلْبِ، وَذِكْرٌ لِلرَّبِّ</div>
     </div>
-    <button class="icon-button" id="settingsBtn" aria-label="الإعدادات">⚙</button>
+    <div class="header-actions">
+      <button class="icon-button" id="themeBtn" aria-label="المظهر والألوان">🎨</button>
+      <button class="icon-button" id="settingsBtn" aria-label="الإعدادات">⚙</button>
+    </div>
   </header>
 
   <main>
@@ -48,7 +53,11 @@
     </section>
 
     <section class="section">
-      <div class="section-heading"><h2>أقسام رفيق الذكر</h2><span class="small-label">اختر ما تحب</span></div>
+      <div class="section-heading">
+        <h2>أقسام رفيق الذكر</h2>
+        <span class="small-label">اختر ما تحب</span>
+      </div>
+
       <div class="menu-grid">
         <button class="menu-card" data-section="quran"><span class="menu-icon">📖</span><b>القرآن الكريم</b><small>قراءة واستماع وتدبر</small></button>
         <button class="menu-card" data-section="adhkar"><span class="menu-icon">🤲</span><b>الأذكار</b><small>الصباح والمساء وغيرها</small></button>
@@ -75,7 +84,29 @@
     <button id="navSettings"><span>⚙</span>الإعدادات</button>
   </nav>
 
+  <div class="theme-panel" id="themePanel" hidden>
+    <div class="theme-box">
+      <div class="theme-heading">
+        <h2>🎨 اختاري مظهر التطبيق</h2>
+        <button id="closeTheme" aria-label="إغلاق">✕</button>
+      </div>
+      <p>اختاري الألوان التي تريح عينيكِ</p>
+
+      <div class="theme-options">
+        <button class="theme-option" data-theme-choice="green"><span>🟢</span> الأخضر الملكي والذهبي</button>
+        <button class="theme-option" data-theme-choice="pink"><span>🌸</span> الوردي والروز جولد</button>
+        <button class="theme-option" data-theme-choice="blue"><span>🔵</span> الأزرق الملكي والفضي</button>
+        <button class="theme-option" data-theme-choice="purple"><span>🟣</span> البنفسجي والذهبي</button>
+        <button class="theme-option" data-theme-choice="black"><span>⚫</span> الأسود والذهبي</button>
+        <button class="theme-option" data-theme-choice="mint"><span>🩵</span> التركواز والنعناعي</button>
+      </div>
+
+      <button class="theme-reset" id="resetTheme">إعادة المظهر الافتراضي</button>
+    </div>
+  </div>
+
   <div class="toast" id="toast" role="status"></div>
   <script src="app.js"></script>
 </body>
-</html>
+                                                   </html>
+                                                   
