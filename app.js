@@ -11,7 +11,7 @@ $('#todayDate').textContent = date;
 
 const intro = $('#introSparkles');
 
-for (let i = 0; i < 34; i++) {
+for (let i = 0; i < 120; i++) {
   const star = document.createElement('i');
   star.className = 'rain-star';
   star.style.left = Math.random() * 100 + '%';
