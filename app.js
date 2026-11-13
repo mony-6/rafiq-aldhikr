@@ -12,7 +12,7 @@ if (dateElement) {
   }).format(new Date());
 }
 
-// رسائل الطمأنينة
+// رسالة اليوم
 const dailyMessages = [
   'ألا بذكر الله تطمئن القلوب',
   'استغفر الله، فبالاستغفار تنشرح الصدور',
@@ -27,7 +27,7 @@ if (messageElement) {
     dailyMessages[new Date().getDate() % dailyMessages.length];
 }
 
-// التنبيهات
+// التنبيهات الصغيرة
 function showToast(message) {
   const toast = $('#toast');
   if (!toast) return;
@@ -41,10 +41,12 @@ function showToast(message) {
   }, 2500);
 }
 
-// النجوم
+// النجوم اللامعة
 const starsContainer = $('#introSparkles');
 
-if (starsContainer && !starsContainer.children.length) {
+if (starsContainer) {
+  starsContainer.innerHTML = '';
+
   for (let i = 0; i < 100; i++) {
     const star = document.createElement('span');
     star.className = 'star';
@@ -62,10 +64,11 @@ document.addEventListener('pointerdown', (event) => {
   sparkle.style.left = event.clientX + 'px';
   sparkle.style.top = event.clientY + 'px';
   document.body.appendChild(sparkle);
+
   setTimeout(() => sparkle.remove(), 700);
 });
 
-// تغيير المظهر
+// لوحة الألوان
 const themePanel = $('#themePanel');
 const themeBtn = $('#themeBtn');
 const closeTheme = $('#closeTheme');
@@ -83,56 +86,62 @@ if (closeTheme && themePanel) {
   });
 }
 
+// تغيير المظهر
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+
+  try {
+    localStorage.setItem('rafiqTheme', theme);
+  } catch (error) {}
+
+  showToast('تم تغيير المظهر بنجاح');
+}
+
 document.querySelectorAll('[data-theme-choice]').forEach((button) => {
   button.addEventListener('click', () => {
-    const theme = button.dataset.themeChoice;
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('rafiqTheme', theme);
+    applyTheme(button.dataset.themeChoice);
     if (themePanel) themePanel.hidden = true;
-    showToast('تم تغيير المظهر');
   });
 });
 
+// استعادة المظهر المحفوظ
+try {
+  const savedTheme = localStorage.getItem('rafiqTheme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }
+} catch (error) {}
+
+// إعادة المظهر الافتراضي
 if (resetTheme) {
   resetTheme.addEventListener('click', () => {
-    document.documentElement.setAttribute('data-theme', 'green');
-    localStorage.setItem('rafiqTheme', 'green');
+    applyTheme('green');
     if (themePanel) themePanel.hidden = true;
-    showToast('تمت إعادة المظهر');
   });
-}
-
-const savedTheme = localStorage.getItem('rafiqTheme');
-if (savedTheme) {
-  document.documentElement.setAttribute('data-theme', savedTheme);
 }
 
 // أسماء سور القرآن الكريم
 const surahs = [
-'الفاتحة','البقرة','آل عمران','النساء','المائدة','الأنعام','الأعراف',
-'الأنفال','التوبة','يونس','هود','يوسف','الرعد','إبراهيم','الحجر',
-'النحل','الإسراء','الكهف','مريم','طه','الأنبياء','الحج','المؤمنون',
-'النور','الفرقان','الشعراء','النمل','القصص','العنكبوت','الروم',
-'لقمان','السجدة','الأحزاب','سبأ','فاطر','يس','الصافات','ص','الزمر',
-'غافر','فصلت','الشورى','الزخرف','الدخان','الجاثية','الأحقاف',
-'محمد','الفتح','الحجرات','ق','الذاريات','الطور','النجم','القمر',
-'الرحمن','الواقعة','الحديد','المجادلة','الحشر','الممتحنة','الصف',
-'الجمعة','المنافقون','التغابن','الطلاق','التحريم','الملك','القلم',
-'الحاقة','المعارج','نوح','الجن','المزمل','المدثر','القيامة',
-'الإنسان','المرسلات','النبأ','النازعات','عبس','التكوير','الانفطار',
-'المطففين','الانشقاق','البروج','الطارق','الأعلى','الغاشية','الفجر',
-'البلد','الشمس','الليل','الضحى','الشرح','التين','العلق','القدر',
-'البينة','الزلزلة','العاديات','القارعة','التكاثر','العصر','الهمزة',
-'الفيل','قريش','الماعون','الكوثر','الكافرون','النصر','المسد',
-'الإخلاص','الفلق','الناس'
+  'الفاتحة','البقرة','آل عمران','النساء','المائدة','الأنعام','الأعراف',
+  'الأنفال','التوبة','يونس','هود','يوسف','الرعد','إبراهيم','الحجر',
+  'النحل','الإسراء','الكهف','مريم','طه','الأنبياء','الحج','المؤمنون',
+  'النور','الفرقان','الشعراء','النمل','القصص','العنكبوت','الروم',
+  'لقمان','السجدة','الأحزاب','سبأ','فاطر','يس','الصافات','ص','الزمر',
+  'غافر','فصلت','الشورى','الزخرف','الدخان','الجاثية','الأحقاف',
+  'محمد','الفتح','الحجرات','ق','الذاريات','الطور','النجم','القمر',
+  'الرحمن','الواقعة','الحديد','المجادلة','الحشر','الممتحنة','الصف',
+  'الجمعة','المنافقون','التغابن','الطلاق','التحريم','الملك','القلم',
+  'الحاقة','المعارج','نوح','الجن','المزمل','المدثر','القيامة',
+  'الإنسان','المرسلات','النبأ','النازعات','عبس','التكوير','الانفطار',
+  'المطففين','الانشقاق','البروج','الطارق','الأعلى','الغاشية','الفجر',
+  'البلد','الشمس','الليل','الضحى','الشرح','التين','العلق','القدر',
+  'البينة','الزلزلة','العاديات','القارعة','التكاثر','العصر','الهمزة',
+  'الفيل','قريش','الماعون','الكوثر','الكافرون','النصر','المسد',
+  'الإخلاص','الفلق','الناس'
 ];
 
-// صفحة القرآن
-const quranPage = $('#quranPage');
-const mainPage = $('main');
-const quranBack = $('#quranBack');
+// عرض قائمة السور
 const surahList = $('#surahList');
-const surahSearch = $('#surahSearch');
 
 function renderSurahs(filter = '') {
   if (!surahList) return;
@@ -168,23 +177,10 @@ function renderSurahs(filter = '') {
   });
 }
 
-function openQuran() {
-  if (mainPage) mainPage.hidden = true;
-  if (quranPage) quranPage.hidden = false;
-  if (surahSearch) surahSearch.value = '';
-  renderSurahs();
-  window.scrollTo(0, 0);
-}
+renderSurahs();
 
-function closeQuran() {
-  if (quranPage) quranPage.hidden = true;
-  if (mainPage) mainPage.hidden = false;
-  window.scrollTo(0, 0);
-}
-
-if (quranBack) {
-  quranBack.addEventListener('click', closeQuran);
-}
+// البحث عن سورة
+const surahSearch = $('#surahSearch');
 
 if (surahSearch) {
   surahSearch.addEventListener('input', () => {
@@ -192,9 +188,31 @@ if (surahSearch) {
   });
 }
 
-renderSurahs();
+// الانتقال بين الصفحات
+const quranPage = $('#quranPage');
+const mainPage = $('main');
+const quranBack = $('#quranBack');
 
-// أزرار الأقسام الرئيسية والسفلية
+function openQuran() {
+  if (mainPage) mainPage.hidden = true;
+  if (quranPage) quranPage.hidden = false;
+
+  renderSurahs();
+  window.scrollTo(0, 0);
+}
+
+function closeQuran() {
+  if (quranPage) quranPage.hidden = true;
+  if (mainPage) mainPage.hidden = false;
+
+  window.scrollTo(0, 0);
+}
+
+if (quranBack) {
+  quranBack.addEventListener('click', closeQuran);
+}
+
+// أزرار الأقسام
 document.querySelectorAll('[data-section]').forEach((button) => {
   button.addEventListener('click', () => {
     const section = button.dataset.section;
@@ -202,27 +220,26 @@ document.querySelectorAll('[data-section]').forEach((button) => {
     if (section === 'quran') {
       openQuran();
     } else {
-      showToast('سيتم تجهيز هذا القسم قريبًا بإذن الله');
+      showToast('القسم ده هيتضاف قريبًا بإذن الله');
     }
   });
 });
 
-// زر الإعدادات
-function openSettings() {
-  showToast('إعدادات التطبيق');
-}
-
+// الإعدادات
 const settingsBtn = $('#settingsBtn');
 const navSettings = $('#navSettings');
 
-if (settingsBtn) settingsBtn.addEventListener('click', openSettings);
-if (navSettings) navSettings.addEventListener('click', openSettings);
+[settingsBtn, navSettings].forEach((button) => {
+  if (button) {
+    button.addEventListener('click', () => {
+      showToast('إعدادات التطبيق هتتوفر قريبًا بإذن الله');
+    });
+  }
+});
 
 // تشغيل التطبيق
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch((error) => {
-      console.log('Service Worker:', error);
-    });
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
   });
 }
