@@ -1,4 +1,4 @@
-const CACHE = 'rafiq-aldhikr-v13';
+const CACHE = 'rafiq-aldhikr-v14';
 
 const ASSETS = [
   './',
