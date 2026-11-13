@@ -1,41 +1,65 @@
-const $ = (s) => document.querySelector(s);
 
-const date = new Intl.DateTimeFormat('ar-EG', {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-}).format(new Date());
+const $ = (selector) => document.querySelector(selector);
 
-$('#todayDate').textContent = date;
+// التاريخ
+const dateElement = $('#todayDate');
 
-const intro = $('#introSparkles');
-
-for (let i = 0; i < 120; i++) {
-  const star = document.createElement('i');
-  star.className = 'rain-star';
-  star.style.left = Math.random() * 100 + '%';
-  star.style.animationDelay = Math.random() * 0.9 + 's';
-  star.style.animationDuration = 1.6 + Math.random() * 1.1 + 's';
-  intro.appendChild(star);
+if (dateElement) {
+  dateElement.textContent = new Intl.DateTimeFormat('ar-EG', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(new Date());
 }
 
-function sparkle(x, y, count = 7) {
-  for (let i = 0; i < count; i++) {
-    const s = document.createElement('i');
-    s.className = 'spark';
-    const angle = Math.random() * Math.PI * 2;
-    const radius = 8 + Math.random() * 19;
-    s.style.left = x + Math.cos(angle) * radius + 'px';
-    s.style.top = y + Math.sin(angle) * radius + 'px';
-    document.body.appendChild(s);
-    setTimeout(() => s.remove(), 850);
+// رسائل التنبيه
+function showToast(message) {
+  const toast = $('#toast');
+  if (!toast) return;
+
+  toast.textContent = message;
+  toast.classList.add('show');
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2300);
+}
+
+// نجوم الافتتاح
+const intro = $('#introSparkles');
+
+if (intro) {
+  for (let i = 0; i < 100; i++) {
+    const star = document.createElement('i');
+    star.className = 'rain-star';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.animationDelay = Math.random() * 1.2 + 's';
+    star.style.animationDuration = 1.8 + Math.random() * 1.5 + 's';
+
+    intro.appendChild(star);
+    setTimeout(() => star.remove(), 4000);
   }
 }
 
-const cardStarStyle = document.createElement('style');
+// تأثير النجوم عند الضغط
+function sparkle(x, y, count = 10) {
+  for (let i = 0; i < count; i++) {
+    const star = document.createElement('i');
+    star.className = 'spark';
+    star.textContent = Math.random() > 0.5 ? '✦' : '✧';
+    star.style.left = (x + Math.random() * 70 - 35) + 'px';
+    star.style.top = (y + Math.random() * 70 - 35) + 'px';
 
-cardStarStyle.textContent = `
+    document.body.appendChild(star);
+    setTimeout(() => star.remove(), 900);
+  }
+}
+
+// تأثير الإضاءة والنجوم حول الخانات
+const starStyle = document.createElement('style');
+
+starStyle.textContent = `
 .menu-card.star-tap,
 .daily-card.star-tap,
 .prayer-card.star-tap {
@@ -43,7 +67,7 @@ cardStarStyle.textContent = `
   isolation: isolate;
   overflow: visible !important;
   box-shadow:
-    0 0 12px #ffffff,
+    0 0 12px #fff,
     0 0 25px #ffe45c,
     0 0 40px #ffb700,
     0 0 55px #00ffc3 !important;
@@ -52,9 +76,9 @@ cardStarStyle.textContent = `
 
 .tap-star {
   position: absolute;
-  z-index: 20;
+  z-index: 30;
   color: #fff;
-  font-size: 19px;
+  font-size: 20px;
   pointer-events: none;
   text-shadow:
     0 0 5px #fff,
@@ -66,7 +90,7 @@ cardStarStyle.textContent = `
 
 @keyframes cardLightBurst {
   0% { filter: brightness(1); }
-  35% { filter: brightness(2.2); transform: scale(1.025); }
+  35% { filter: brightness(2); transform: scale(1.025); }
   100% { filter: brightness(1); transform: scale(1); }
 }
 
@@ -77,14 +101,15 @@ cardStarStyle.textContent = `
 }
 `;
 
-document.head.appendChild(cardStarStyle);
+document.head.appendChild(starStyle);
 
-document.addEventListener('pointerdown', (e) => {
-  if (e.target.closest('[data-no-sparkles="true"]')) return;
+// الضغط والنجوم حول الخانات
+document.addEventListener('pointerdown', (event) => {
+  if (event.target.closest('[data-no-sparkles="true"]')) return;
 
-  sparkle(e.clientX, e.clientY, 10);
+  sparkle(event.clientX, event.clientY, 8);
 
-  const card = e.target.closest(
+  const card = event.target.closest(
     '.menu-card, .daily-card, .prayer-card'
   );
 
@@ -96,10 +121,10 @@ document.addEventListener('pointerdown', (e) => {
   void card.offsetWidth;
   card.classList.add('star-tap');
 
-  for (let i = 0; i < 32; i++) {
+  for (let i = 0; i < 28; i++) {
     const star = document.createElement('span');
     star.className = 'tap-star';
-    star.textContent = Math.random() > .5 ? '✦' : '✧';
+    star.textContent = Math.random() > 0.5 ? '✦' : '✧';
 
     const side = i % 4;
     const position = Math.random() * 100;
@@ -118,7 +143,7 @@ document.addEventListener('pointerdown', (e) => {
       star.style.top = position + '%';
     }
 
-    star.style.animationDelay = Math.random() * .25 + 's';
+    star.style.animationDelay = Math.random() * 0.25 + 's';
     card.appendChild(star);
 
     setTimeout(() => star.remove(), 1400);
@@ -127,7 +152,7 @@ document.addEventListener('pointerdown', (e) => {
   setTimeout(() => card.classList.remove('star-tap'), 1100);
 });
 
-
+// أسماء الأقسام
 const labels = {
   quran: 'القرآن الكريم',
   adhkar: 'الأذكار',
@@ -141,28 +166,120 @@ const labels = {
   friday: 'تذكيرات الجمعة'
 };
 
-function showToast(message) {
-  const toast = $('#toast');
-  toast.textContent = message;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2300);
-}
-
+// الأقسام
 document.querySelectorAll('[data-section]').forEach(button => {
   button.addEventListener('click', () => {
     const key = button.dataset.section;
-    showToast('سنجهّز قسم «' + (labels[key] || 'الإعدادات') + '» في المرحلة التالية');
+    showToast(
+      'سنجهّز قسم «' + (labels[key] || 'القسم') + '» في المرحلة التالية'
+    );
   });
 });
 
-$('#settingsBtn').addEventListener('click', () => {
-  showToast('الإعدادات سنضيفها في المرحلة التالية');
+// الألوان الستة
+const themeBtn = $('#themeBtn');
+const themePanel = $('#themePanel');
+const closeTheme = $('#closeTheme');
+const resetTheme = $('#resetTheme');
+const themeOptions = document.querySelectorAll('[data-theme-choice]');
+
+const themes = ['green', 'pink', 'blue', 'purple', 'black', 'mint'];
+
+function applyTheme(theme) {
+  const selectedTheme = themes.includes(theme) ? theme : 'green';
+
+  document.body.dataset.theme = selectedTheme;
+
+  themeOptions.forEach(button => {
+    const isSelected =
+      button.dataset.themeChoice === selectedTheme;
+
+    button.classList.toggle('active', isSelected);
+    button.classList.toggle('selected', isSelected);
+    button.setAttribute('aria-pressed', String(isSelected));
+  });
+
+  try {
+    localStorage.setItem('rafiqTheme', selectedTheme);
+  } catch (error) {
+    // يستمر التطبيق حتى لو تعذر الحفظ
+  }
+}
+
+// استعادة اللون المحفوظ
+let savedTheme = 'green';
+
+try {
+  savedTheme = localStorage.getItem('rafiqTheme') || 'green';
+} catch (error) {}
+
+applyTheme(savedTheme);
+
+// فتح نافذة الألوان
+if (themeBtn && themePanel) {
+  themeBtn.addEventListener('click', () => {
+    themePanel.hidden = false;
+  });
+}
+
+// إغلاق نافذة الألوان
+if (closeTheme && themePanel) {
+  closeTheme.addEventListener('click', () => {
+    themePanel.hidden = true;
+  });
+}
+
+// اختيار لون
+themeOptions.forEach(button => {
+  button.addEventListener('click', () => {
+    applyTheme(button.dataset.themeChoice);
+    showToast('تم اختيار المظهر الجديد ✨');
+
+    if (themePanel) {
+      themePanel.hidden = true;
+    }
+  });
 });
 
-$('#navSettings').addEventListener('click', () => {
-  showToast('الإعدادات سنضيفها في المرحلة التالية');
-});
+// إعادة المظهر الافتراضي
+if (resetTheme) {
+  resetTheme.addEventListener('click', () => {
+    applyTheme('green');
+    showToast('تمت إعادة المظهر الافتراضي');
 
+    if (themePanel) {
+      themePanel.hidden = true;
+    }
+  });
+}
+
+// إغلاق النافذة عند الضغط خارج الصندوق
+if (themePanel) {
+  themePanel.addEventListener('click', event => {
+    if (event.target === themePanel) {
+      themePanel.hidden = true;
+    }
+  });
+}
+
+// الإعدادات مؤقتًا
+const settingsBtn = $('#settingsBtn');
+
+if (settingsBtn) {
+  settingsBtn.addEventListener('click', () => {
+    showToast('الإعدادات سنضيفها في المرحلة التالية');
+  });
+}
+
+const navSettings = $('#navSettings');
+
+if (navSettings) {
+  navSettings.addEventListener('click', () => {
+    showToast('الإعدادات سنضيفها في المرحلة التالية');
+  });
+}
+
+// تشغيل التطبيق
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js').catch(() => {});
