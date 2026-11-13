@@ -13,6 +13,40 @@ if (dateElement) {
   }).format(new Date());
 }
 
+// رسائل نفحة الطمأنينة اليومية
+const dailyMessages = [
+  ['﴿أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ﴾', 'سورة الرعد · الآية ٢٨'],
+  ['﴿فَإِنَّ مَعَ الْعُسْرِ يُسْرًا ۝ إِنَّ مَعَ الْعُسْرِ يُسْرًا﴾', 'سورة الشرح · الآيتان ٥–٦'],
+  ['﴿لَا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا﴾', 'سورة التوبة · الآية ٤٠'],
+  ['﴿وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ﴾', 'سورة الطلاق · الآية ٣'],
+  ['﴿وَقُل رَّبِّ زِدْنِي عِلْمًا﴾', 'سورة طه · الآية ١١٤'],
+  ['﴿إِنَّ اللَّهَ مَعَ الصَّابِرِينَ﴾', 'سورة البقرة · الآية ١٥٣'],
+  ['﴿ادْعُونِي أَسْتَجِبْ لَكُمْ﴾', 'سورة غافر · الآية ٦٠'],
+  ['﴿وَلَا تَيْأَسُوا مِن رَّوْحِ اللَّهِ﴾', 'سورة يوسف · الآية ٨٧'],
+  ['﴿إِنَّ رَبِّي قَرِيبٌ مُّجِيبٌ﴾', 'سورة هود · الآية ٦١'],
+  ['﴿رَبِّ اشْرَحْ لِي صَدْرِي ۝ وَيَسِّرْ لِي أَمْرِي﴾', 'سورة طه · الآيتان ٢٥–٢٦'],
+  ['﴿رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ﴾', 'سورة البقرة · الآية ٢٠١'],
+  ['﴿وَهُوَ أَرْحَمُ الرَّاحِمِينَ﴾', 'سورة يوسف · الآية ٦٤'],
+  ['﴿وَرَحْمَتِي وَسِعَتْ كُلَّ شَيْءٍ﴾', 'سورة الأعراف · الآية ١٥٦'],
+  ['﴿حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ﴾', 'سورة آل عمران · الآية ١٧٣']
+];
+
+const dailyMessage = $('#dailyMessage');
+const dailySource = document.querySelector('.daily-source');
+
+if (dailyMessage && dailySource) {
+  const now = new Date();
+  const dayNumber = Math.floor(
+    Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000
+  );
+  const message = dailyMessages[
+    ((dayNumber % dailyMessages.length) + dailyMessages.length) % dailyMessages.length
+  ];
+
+  dailyMessage.textContent = message[0];
+  dailySource.textContent = message[1];
+}
+
 // رسائل التنبيه
 function showToast(message) {
   const toast = $('#toast');
@@ -62,10 +96,7 @@ starStyle.textContent = `
   position: relative;
   isolation: isolate;
   overflow: visible !important;
-  box-shadow:
-    0 0 15px #ffe8a3,
-    0 0 30px #d9ae52,
-    0 0 45px #b8860b !important;
+  box-shadow: 0 0 15px #ffe8a3, 0 0 30px #d9ae52, 0 0 45px #b8860b !important;
   animation: cardLightBurst 1s ease-out;
 }
 
@@ -75,29 +106,14 @@ starStyle.textContent = `
   color: #fff;
   font-size: 20px;
   pointer-events: none;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 12px #ffe45c,
-    0 0 22px #ffae00,
-    0 0 30px #00ffc3;
+  text-shadow: 0 0 5px #fff, 0 0 12px #ffe45c, 0 0 22px #ffae00, 0 0 30px #00ffc3;
   animation: tapStarFlash 1s ease-out forwards;
 }
 
 @keyframes cardLightBurst {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 8px #d9ae52;
-  }
-  50% {
-    transform: scale(1.015);
-    box-shadow:
-      0 0 15px #ffe8a3,
-      0 0 30px #d9ae52,
-      0 0 45px #b8860b;
-  }
-  100% {
-    transform: scale(1);
-  }
+  0% { transform: scale(1); box-shadow: 0 0 8px #d9ae52; }
+  50% { transform: scale(1.015); box-shadow: 0 0 15px #ffe8a3, 0 0 30px #d9ae52, 0 0 45px #b8860b; }
+  100% { transform: scale(1); }
 }
 
 @keyframes tapStarFlash {
@@ -130,22 +146,9 @@ starStyle.textContent = `
   box-shadow: 0 0 30px rgba(255,210,80,.4);
 }
 
-.settings-box h2 {
-  text-align: center;
-  margin-top: 0;
-}
-
-.setting-item {
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(150,150,150,.3);
-}
-
-.setting-item label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
+.settings-box h2 { text-align: center; margin-top: 0; }
+.setting-item { padding: 14px 0; border-bottom: 1px solid rgba(150,150,150,.3); }
+.setting-item label { display: block; margin-bottom: 10px; font-weight: bold; }
 .setting-item select {
   width: 100%;
   padding: 12px;
@@ -155,13 +158,7 @@ starStyle.textContent = `
   color: inherit;
   font-size: 16px;
 }
-
-.setting-item input {
-  width: 22px;
-  height: 22px;
-  vertical-align: middle;
-}
-
+.setting-item input { width: 22px; height: 22px; vertical-align: middle; }
 .settings-action {
   width: 100%;
   padding: 13px;
@@ -172,21 +169,9 @@ starStyle.textContent = `
   font-weight: bold;
   cursor: pointer;
 }
-
-.settings-save {
-  background: var(--main, #123f32);
-  color: white;
-}
-
-.settings-reset {
-  background: #eee2c5;
-  color: #493718;
-}
-
-.settings-close {
-  background: #777;
-  color: white;
-}
+.settings-save { background: var(--main, #123f32); color: white; }
+.settings-reset { background: #eee2c5; color: #493718; }
+.settings-close { background: #777; color: white; }
 `;
 
 document.head.appendChild(starStyle);
@@ -197,10 +182,7 @@ document.addEventListener('pointerdown', (event) => {
 
   sparkle(event.clientX, event.clientY, 8);
 
-  const card = event.target.closest(
-    '.menu-card, .daily-card, .prayer-card'
-  );
-
+  const card = event.target.closest('.menu-card, .daily-card, .prayer-card');
   if (!card) return;
 
   card.classList.remove('star-tap');
@@ -260,25 +242,14 @@ const closeTheme = $('#closeTheme');
 const resetTheme = $('#resetTheme');
 const themeOptions = document.querySelectorAll('[data-theme-choice]');
 
-const themes = [
-  'green',
-  'pink',
-  'blue',
-  'purple',
-  'black',
-  'mint',
-  'blackgold'
-];
+const themes = ['green', 'pink', 'blue', 'purple', 'black', 'mint', 'blackgold'];
 
 function applyTheme(theme) {
   const selectedTheme = themes.includes(theme) ? theme : 'green';
-
   document.body.dataset.theme = selectedTheme;
 
   themeOptions.forEach(button => {
-    const isSelected =
-      button.dataset.themeChoice === selectedTheme;
-
+    const isSelected = button.dataset.themeChoice === selectedTheme;
     button.classList.toggle('active', isSelected);
     button.classList.toggle('selected', isSelected);
     button.setAttribute('aria-pressed', String(isSelected));
@@ -317,7 +288,6 @@ themeOptions.forEach(button => {
   button.addEventListener('click', () => {
     applyTheme(button.dataset.themeChoice);
     showToast('تم اختيار المظهر الجديد ✨');
-
     if (themePanel) themePanel.hidden = true;
   });
 });
@@ -327,7 +297,6 @@ if (resetTheme) {
   resetTheme.addEventListener('click', () => {
     applyTheme('green');
     showToast('تمت إعادة المظهر الافتراضي');
-
     if (themePanel) themePanel.hidden = true;
   });
 }
@@ -335,9 +304,7 @@ if (resetTheme) {
 // إغلاق نافذة الألوان بالخارج
 if (themePanel) {
   themePanel.addEventListener('click', event => {
-    if (event.target === themePanel) {
-      themePanel.hidden = true;
-    }
+    if (event.target === themePanel) themePanel.hidden = true;
   });
 }
 
@@ -349,8 +316,7 @@ function applyFontSize(size) {
     larger: '20px'
   };
 
-  document.documentElement.style.fontSize =
-    sizes[size] || sizes.normal;
+  document.documentElement.style.fontSize = sizes[size] || sizes.normal;
 }
 
 // استعادة حجم الخط
@@ -383,8 +349,7 @@ function openSettings() {
 
       <div class="setting-item">
         <label for="reminderToggle">🔔 تفضيلات التذكير</label>
-        <input id="reminderToggle" type="checkbox"
-          ${reminderOn ? 'checked' : ''}>
+        <input id="reminderToggle" type="checkbox" ${reminderOn ? 'checked' : ''}>
         <span>تفعيل التذكيرات</span>
       </div>
 
@@ -406,17 +371,9 @@ function openSettings() {
         </select>
       </div>
 
-      <button class="settings-action settings-save" id="saveSettings">
-        حفظ الإعدادات
-      </button>
-
-      <button class="settings-action settings-reset" id="settingsReset">
-        إعادة المظهر الافتراضي
-      </button>
-
-      <button class="settings-action settings-close" id="closeSettings">
-        إغلاق
-      </button>
+      <button class="settings-action settings-save" id="saveSettings">حفظ الإعدادات</button>
+      <button class="settings-action settings-reset" id="settingsReset">إعادة المظهر الافتراضي</button>
+      <button class="settings-action settings-close" id="closeSettings">إغلاق</button>
     </div>
   `;
 
@@ -427,14 +384,9 @@ function openSettings() {
 
   // حفظ الإعدادات
   overlay.querySelector('#saveSettings').addEventListener('click', () => {
-    const enabled =
-      overlay.querySelector('#reminderToggle').checked;
-
-    const interval =
-      overlay.querySelector('#reminderInterval').value;
-
-    const size =
-      overlay.querySelector('#fontSizeSelect').value;
+    const enabled = overlay.querySelector('#reminderToggle').checked;
+    const interval = overlay.querySelector('#reminderInterval').value;
+    const size = overlay.querySelector('#fontSizeSelect').value;
 
     try {
       localStorage.setItem('reminderOn', String(enabled));
@@ -444,7 +396,6 @@ function openSettings() {
 
     applyFontSize(size);
     overlay.remove();
-
     showToast('تم حفظ تفضيلاتك بنجاح ✨');
   });
 
