@@ -186,3 +186,9 @@ body::before {
 @keyframes brightStarSpin {
   to { transform: rotate(360deg); }
   }
+/* إصلاح ظهور النجوم خارج حدود الخانات */
+.menu-card,
+.daily-card,
+.prayer-card {
+  overflow: visible !important;
+}
