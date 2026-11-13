@@ -63,10 +63,9 @@ starStyle.textContent = `
   isolation: isolate;
   overflow: visible !important;
   box-shadow:
-    0 0 12px #fff,
-    0 0 25px #ffe45c,
-    0 0 40px #ffb700,
-    0 0 55px #00ffc3 !important;
+    0 0 15px #ffe8a3,
+    0 0 30px #d9ae52,
+    0 0 45px #b8860b !important;
   animation: cardLightBurst 1s ease-out;
 }
 
@@ -85,9 +84,20 @@ starStyle.textContent = `
 }
 
 @keyframes cardLightBurst {
-  0% { filter: brightness(1); }
-  35% { filter: brightness(2); transform: scale(1.025); }
-  100% { filter: brightness(1); transform: scale(1); }
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 8px #d9ae52;
+  }
+  50% {
+    transform: scale(1.015);
+    box-shadow:
+      0 0 15px #ffe8a3,
+      0 0 30px #d9ae52,
+      0 0 45px #b8860b;
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes tapStarFlash {
@@ -242,22 +252,6 @@ const labels = {
   favorites: 'مفضلتي',
   friday: 'تذكيرات الجمعة'
 };
-
-// الأقسام
-document.querySelectorAll('[data-section]').forEach(button => {
-  button.addEventListener('click', () => {
-    const key = button.dataset.section;
-
-    if (key === 'settings') {
-      openSettings();
-      return;
-    }
-
-    showToast(
-      'سنجهّز قسم «' + (labels[key] || 'القسم') + '» في المرحلة التالية'
-    );
-  });
-});
 
 // الألوان السبعة
 const themeBtn = $('#themeBtn');
