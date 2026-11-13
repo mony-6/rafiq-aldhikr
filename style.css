@@ -1,703 +1,805 @@
 @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&display=swap');
 
 :root {
---main:#123f32; --main-light:#1e6650;
---accent:#d9ae52; --accent-light:#ffe8a3;
---bg:#f6f3e9; --card:#fff; --text:#173b30;
---muted:#78877e; --border:#e8dfc9;
---shadow:0 8px 25px rgba(18,63,50,.10);
+  --main: #123f32;
+  --main-light: #1e6650;
+  --accent: #d9ae52;
+  --accent-light: #ffe8a3;
+  --bg: #f6f3e9;
+  --card: #ffffff;
+  --text: #24352d;
+  --muted: #78847c;
+  --border: rgba(217,174,82,.35);
+  --shadow: 0 8px 28px rgba(18,63,50,.10);
+  --glow: rgba(255,221,130,.35);
 }
 
 body[data-theme="pink"] {
---main:#873e63; --main-light:#b86688;
---accent:#d99c9f; --accent-light:#ffe1e4;
---bg:#fff2f5; --card:#fff; --text:#66334e;
---muted:#987987; --border:#f1d6e0;
+  --main: #8c3d63;
+  --main-light: #c16d91;
+  --accent: #d6a16b;
+  --accent-light: #ffe2d0;
+  --bg: #fff3f7;
+  --card: #ffffff;
+  --text: #4a2938;
+  --muted: #927785;
+  --border: rgba(193,109,145,.3);
+  --shadow: 0 8px 28px rgba(140,61,99,.10);
+  --glow: rgba(255,205,225,.4);
 }
 
 body[data-theme="blue"] {
---main:#183d70; --main-light:#32639b;
---accent:#b9cce3; --accent-light:#e5f1ff;
---bg:#eef4fc; --card:#fff; --text:#1d3556;
---muted:#71839b; --border:#d7e3f2;
+  --main: #174d7c;
+  --main-light: #347eb5;
+  --accent: #d6b65f;
+  --accent-light: #fff0b5;
+  --bg: #eff6fc;
+  --card: #ffffff;
+  --text: #20364b;
+  --muted: #71869a;
+  --border: rgba(52,126,181,.28);
+  --shadow: 0 8px 28px rgba(23,77,124,.10);
+  --glow: rgba(190,224,255,.4);
 }
 
 body[data-theme="purple"] {
---main:#50336f; --main-light:#7953a0;
---accent:#d8b56b; --accent-light:#f8e8b8;
---bg:#f5effb; --card:#fff; --text:#49315f;
---muted:#897a99; --border:#e5d9f0;
-}
-
-body[data-theme="black"] {
---main:#171717; --main-light:#34302a;
---accent:#e5bd60; --accent-light:#ffedb5;
---bg:#211f1b; --card:#302d27; --text:#fff1d0;
---muted:#c2b79e; --border:#655638;
-}
-
-body[data-theme="mint"] {
---main:#176d70; --main-light:#279b91;
---accent:#8ed8bd; --accent-light:#d5fff0;
---bg:#eaf9f5; --card:#fff; --text:#185653;
---muted:#71948c; --border:#cdebe2;
-}
-
-- { box-sizing:border-box; }
-
-body {
-margin:0; padding:0 0 85px;
-background:var(--bg); color:var(--text);
-font-family:'Cairo',sans-serif;
-transition:background .35s,color .35s;
-overflow-x:hidden;
-}
-
-button { font-family:inherit; cursor:pointer; }
-
-.topbar {
-min-height:76px;
-background:linear-gradient(120deg,var(--main),var(--main-light));
-color:white; display:flex; align-items:center;
-gap:12px; padding:12px 17px; box-shadow:var(--shadow);
-}
-
-.brand-mark {
-width:45px; height:45px; border:2px solid var(--accent);
-border-radius:15px; display:grid; place-items:center;
-font-family:'Amiri',serif; font-size:30px;
-color:var(--accent-light);
-}
-
-.brand-name { font-size:19px; font-weight:800; }
-.brand-tag { font-size:10px; color:var(--accent-light); }
-
-.header-actions {
-margin-right:auto; display:flex; gap:8px;
-}
-
-.icon-button {
-width:39px; height:39px;
-border:1px solid rgba(255,255,255,.35);
-border-radius:12px; background:rgba(255,255,255,.13);
-color:white; font-size:19px;
-}
-
-main { width:min(100% - 26px,650px); margin:18px auto; }
-
-.welcome-card {
-position:relative; overflow:hidden; padding:24px 20px;
-border-radius:23px; color:white;
-background:linear-gradient(135deg,var(--main),var(--main-light));
-box-shadow:var(--shadow);
-}
-
-.welcome-glow {
-position:absolute; width:180px; height:180px;
-border-radius:50%; background:var(--accent);
-opacity:.13; left:-65px; top:-80px; filter:blur(12px);
-}
-
-.eyebrow { font-size:12px; color:var(--accent); margin:0 0 8px; }
-.welcome-card h1 { font-size:23px; line-height:1.7; margin:5px 0; }
-.welcome-copy { font-size:13px; line-height:1.9; color:#f5eee0; }
-.date-line { font-size:12px; color:var(--accent-light); margin-top:15px; }
-
-.daily-card,.prayer-card {
-position:relative; overflow:visible;
-background:var(--card); border:1px solid var(--border);
-border-radius:20px; padding:17px; margin:15px 0;
-box-shadow:var(--shadow); color:var(--text);
-}
-
-.section-heading {
-display:flex; align-items:center; gap:8px; flex-wrap:wrap;
-}
-
-.section-heading h2,.prayer-card h2 { font-size:17px; margin:0; }
-.small-label { margin-right:auto; color:var(--muted); font-size:11px; }
-.daily-message {
-font-family:'Amiri',serif; font-size:23px;
-text-align:center; line-height:2; color:var(--main);
-}
-.daily-source { text-align:center; color:var(--muted); font-size:11px; }
-
-.prayer-card {
-display:flex; justify-content:space-between; align-items:center; gap:10px;
-}
-.muted { color:var(--muted); font-size:12px; line-height:1.8; }
-.prayer-icon { font-size:36px; color:var(--accent); }
-
-.section { margin-top:25px; }
-.section > .section-heading { margin-bottom:13px; }
-
-.menu-grid {
-display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px;
-}
-
-.menu-card {
-position:relative; isolation:isolate; overflow:visible;
-min-height:130px; padding:15px 8px;
-border:1px solid var(--border); border-radius:19px;
-background:var(--card); color:var(--text);
-box-shadow:var(--shadow); display:flex;
-flex-direction:column; align-items:center; justify-content:center;
-gap:7px; transition:transform .2s,background .3s;
-}
-
-.menu-card:active { transform:scale(.96); }
-.menu-icon { font-size:27px; }
-.menu-card b { font-size:13px; }
-.menu-card small { font-size:10px; color:var(--muted); text-align:center; }
-
-.footer-note {
-text-align:center; color:var(--muted);
-font-size:12px; padding:25px 5px;
-}
-.footer-note span { color:var(--accent); }
-
-.bottom-nav {
-position:fixed; z-index:50; bottom:0; left:0; right:0;
-display:flex; justify-content:space-around; align-items:center;
-padding:9px 3px calc(9px + env(safe-area-inset-bottom));
-background:var(--card); border-top:1px solid var(--border);
-box-shadow:0 -5px 20px rgba(0,0,0,.06);
-}
-
-.bottom-nav button {
-border:0; background:transparent; color:var(--muted);
-font-size:10px; display:flex; flex-direction:column;
-align-items:center; gap:3px;
-}
-.bottom-nav button span { font-size:19px; }
-.bottom-nav button.active { color:var(--main); font-weight:800; }
-
-/* لوحة اختيار الألوان */
-.theme-panel {
-position:fixed;
-inset:0;
-z-index:200;
-background:rgba(0,0,0,.65);
-display:flex;
-align-items:center;
-justify-content:center;
-padding:18px;
-}
-
-.theme-panel[hidden] { display:none; }
-
-.theme-box {
-width:100%;
-max-width:420px;
-max-height:85vh;
-overflow-y:auto;
-background:var(--card);
-color:var(--text);
-border:1px solid var(--accent);
-border-radius:24px;
-padding:20px;
-box-shadow:0 0 35px rgba(0,0,0,.3);
-}
-
-.theme-heading {
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:10px;
-}
-
-.theme-heading h2 {
-font-size:18px;
-margin:0;
-}
-
-#closeTheme {
-border:0;
-background:var(--bg);
-color:var(--text);
-border-radius:10px;
-width:35px;
-height:35px;
-font-size:17px;
-}
-
-.theme-box > p {
-color:var(--muted);
-font-size:12px;
-}
-
-.theme-options {
-display:grid;
-grid-template-columns:1fr;
-gap:10px;
-margin:18px 0;
-}
-
-.theme-option {
-display:flex;
-align-items:center;
-gap:12px;
-padding:13px;
-border:1px solid var(--border);
-border-radius:14px;
-background:var(--bg);
-color:var(--text);
-font-size:13px;
-text-align:right;
-transition:.2s;
-}
-
-.theme-option span { font-size:22px; }
-
-.theme-option:active {
-transform:scale(.97);
-}
-
-.theme-option.selected {
-border:2px solid var(--accent);
-box-shadow:0 0 14px var(--accent);
-font-weight:800;
-}
-
-.theme-reset {
-width:100%;
-padding:13px;
-border:0;
-border-radius:13px;
-background:var(--main);
-color:white;
-font-size:13px;
-font-weight:700;
-}
-
-/* رسالة التنبيه */
-.toast {
-position:fixed;
-z-index:300;
-bottom:90px;
-left:50%;
-transform:translate(-50%,15px);
-opacity:0;
-pointer-events:none;
-background:var(--main);
-color:white;
-padding:12px 18px;
-border-radius:14px;
-font-size:12px;
-transition:.25s;
-text-align:center;
-width:max-content;
-max-width:90%;
-}
-
-.toast.show {
-opacity:1;
-transform:translate(-50%,0);
-}
-
-/* نجوم متلألئة */
-.intro-sparkles {
-position:fixed;
-inset:0;
-pointer-events:none;
-overflow:hidden;
-z-index:100;
-}
-
-.rain-star {
-position:absolute;
-top:-20px;
-width:5px;
-height:5px;
-border-radius:50%;
-background:#ffe58a;
-box-shadow:0 0 7px #fff,0 0 15px #ffd34d;
-animation:rain 2.5s linear forwards;
-}
-
-@keyframes rain {
-to { transform:translateY(110vh) rotate(180deg); opacity:0; }
-}
-
-.spark {
-position:fixed;
-z-index:150;
-pointer-events:none;
-color:#ffe58a;
-font-size:18px;
-text-shadow:0 0 8px #fff,0 0 17px #ffd34d;
-animation:sparkMove .8s ease-out forwards;
-}
-
-@keyframes sparkMove {
-0% { opacity:1; transform:scale(.4); }
-100% { opacity:0; transform:scale(1.8) translateY(-18px); }
-}
-
-.menu-card.star-tap,
-.daily-card.star-tap,
-.prayer-card.star-tap {
-box-shadow:
-0 0 12px #fff,
-0 0 25px #ffe45c,
-0 0 40px #ffb700,
-0 0 55px #00ffc3 !important;
-animation:cardLightBurst 1s ease-out;
-}
-
-.tap-star {
-position:absolute;
-z-index:20;
-color:#fff;
-font-size:19px;
-pointer-events:none;
-text-shadow:
-0 0 5px #fff,
-0 0 12px #ffe45c,
-0 0 22px #ffae00,
-0 0 30px #00ffc3;
-animation:tapStarFlash 1s ease-out forwards;
-}
-
-@keyframes cardLightBurst {
-0% { filter:brightness(1); }
-35% { filter:brightness(1.8) scale(1.02); }
-100% { filter:brightness(1); }
-}
-
-@keyframes tapStarFlash {
-0% { opacity:0; transform:scale(.2) rotate(0); }
-25% { opacity:1; transform:scale(1.7) rotate(90deg); }
-100% { opacity:0; transform:scale(.3) rotate(220deg); }
-}
-
-@media (max-width:360px) {
-.brand-name { font-size:16px; }
-.menu-grid { gap:8px; }
-.menu-card { min-height:120px; }
-} 
-
-/* ===== ألوان رفيق الذكر الملكية ===== */
-
-:root {
-  --main: #07533d;
-  --main-light: #16805c;
-  --accent: #e5b84e;
+  --main: #563b7d;
+  --main-light: #8060ae;
+  --accent: #dfbd67;
   --accent-light: #fff0b8;
-  --bg: #f4f6e9;
-  --card: #fffdf3;
-  --text: #183d30;
-  --muted: #687d70;
-  --border: #e4d4a5;
-  --shadow: 0 8px 25px rgba(18,63,50,.13);
-}
-
-body[data-theme="green"] {
-  --main: #07533d;
-  --main-light: #16805c;
-  --accent: #e5b84e;
-  --bg: #f4f6e9;
-  --card: #fffdf3;
-  --text: #183d30;
-  --muted: #687d70;
-  --border: #e4d4a5;
-}
-
-body[data-theme="pink"] {
-  --main: #963d68;
-  --main-light: #d16c94;
-  --accent: #dca1a0;
-  --bg: #fff0f5;
-  --card: #fffafd;
-  --text: #60334d;
-  --muted: #98758a;
-  --border: #efc5d8;
-}
-
-body[data-theme="blue"] {
-  --main: #17477e;
-  --main-light: #3979b7;
-  --accent: #b9d5ee;
-  --bg: #edf5ff;
-  --card: #fbfdff;
-  --text: #203c60;
-  --muted: #7086a3;
-  --border: #c8dbf1;
-}
-
-body[data-theme="purple"] {
-  --main: #593579;
-  --main-light: #9062b5;
-  --accent: #e1bd67;
-  --bg: #f5efff;
-  --card: #fffaff;
-  --text: #49345f;
-  --muted: #89789d;
-  --border: #dfcbed;
+  --bg: #f5f0fc;
+  --card: #ffffff;
+  --text: #342747;
+  --muted: #817493;
+  --border: rgba(128,96,174,.28);
+  --shadow: 0 8px 28px rgba(86,59,125,.10);
+  --glow: rgba(220,200,255,.4);
 }
 
 body[data-theme="black"] {
-  --main: #171512;
-  --main-light: #40382b;
-  --accent: #e8bd56;
-  --bg: #211f1b;
-  --card: #302c25;
-  --text: #fff0ce;
-  --muted: #c9b995;
-  --border: #786039;
+  --main: #59402e;
+  --main-light: #806044;
+  --accent: #e0b85e;
+  --accent-light: #ffe8a3;
+  --bg: #f5f0e9;
+  --card: #fffdf9;
+  --text: #3b2c20;
+  --muted: #8b7968;
+  --border: rgba(128,96,68,.28);
+  --shadow: 0 8px 28px rgba(70,48,30,.10);
+  --glow: rgba(255,220,150,.35);
 }
 
 body[data-theme="mint"] {
-  --main: #126c69;
-  --main-light: #27a89a;
-  --accent: #9be2c8;
-  --bg: #e9faf5;
-  --card: #fbfffd;
-  --text: #185653;
-  --muted: #70948b;
-  --border: #bce8d9;
+  --main: #176c69;
+  --main-light: #369b91;
+  --accent: #d4b45f;
+  --accent-light: #fff0b5;
+  --bg: #effaf7;
+  --card: #ffffff;
+  --text: #214541;
+  --muted: #718e89;
+  --border: rgba(54,155,145,.28);
+  --shadow: 0 8px 28px rgba(23,108,105,.10);
+  --glow: rgba(190,245,230,.4);
 }
-
-/* خلفية متناسقة */
-body {
-  background: var(--bg) !important;
-  color: var(--text);
-}
-
-/* الخانات */
-.menu-card,
-.daily-card,
-.prayer-card {
-  background: var(--card) !important;
-  color: var(--text) !important;
-  border: 1px solid var(--border) !important;
-  box-shadow: 0 7px 20px rgba(0,0,0,.08);
-}
-
-/* أسماء الخانات */
-.menu-card b,
-.menu-card small,
-.section-heading h2,
-.daily-card h2,
-.prayer-card h2 {
-  color: var(--text) !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-/* لمعة ذهبية من غير تبييض الخانة */
-.menu-card.star-tap,
-.daily-card.star-tap,
-.prayer-card.star-tap {
-  animation: none !important;
-  filter: none !important;
-  box-shadow:
-    0 0 8px var(--accent),
-    0 0 18px var(--accent),
-    0 0 30px rgba(255,210,90,.45) !important;
-}
-
-/* الأزرار */
-.theme-option.selected {
-  border: 2px solid var(--accent) !important;
-  box-shadow: 0 0 15px var(--accent) !important;
-}
-
-.theme-reset {
-  background: var(--main) !important;
-  color: white !important;
-}
-
-/* نجوم واضحة */
-.tap-star {
-  color: #fff !important;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 12px #ffd84d,
-    0 0 22px #ffb700 !important;
-}
-
-
-/* ===== تحديث الألوان الملكية ===== */
-
-/* الأسود الفحمي والذهبي الثقيل */
-body[data-theme="black"] {
-  --main: #17120a;
-  --main-light: #493416;
-  --accent: #f5c451;
-  --accent-light: #ffe7a0;
-  --bg: #100e0a;
-  --card: #211b10;
-  --text: #fff2d2;
-  --muted: #d8c18f;
-  --border: #a47a2b;
-  --shadow: 0 8px 28px rgba(0,0,0,.45);
-}
-
-/* أخضر زمردي وذهبي أقوى */
-body[data-theme="green"] {
-  --main: #06452f;
-  --main-light: #087b50;
-  --accent: #edbd43;
-  --accent-light: #ffedaa;
-  --bg: #edf3e8;
-  --card: #fffdf5;
-  --text: #123b2b;
-  --border: #d8b75d;
-}
-
-/* وردي ملكي وروز جولد */
-body[data-theme="pink"] {
-  --main: #8d2858;
-  --main-light: #d34f86;
-  --accent: #e6a0a6;
-  --accent-light: #ffe0e5;
-  --bg: #fff0f5;
-  --card: #fffafd;
-  --text: #62223f;
-  --border: #e9a8c1;
-}
-
-/* أزرق ملكي وفضي */
-body[data-theme="blue"] {
-  --main: #123d79;
-  --main-light: #2878c5;
-  --accent: #c5dafa;
-  --accent-light: #eaf3ff;
-  --bg: #edf4ff;
-  --card: #fbfdff;
-  --text: #17365e;
-  --border: #9bbce5;
-}
-
-/* بنفسجي ملكي وذهبي */
-body[data-theme="purple"] {
-  --main: #49236f;
-  --main-light: #8050b5;
-  --accent: #e8c15b;
-  --accent-light: #fff0b8;
-  --bg: #f3edff;
-  --card: #fffaff;
-  --text: #41265e;
-  --border: #c5a2e5;
-}
-
-/* تركواز ونعناعي */
-body[data-theme="mint"] {
-  --main: #075e60;
-  --main-light: #13a69a;
-  --accent: #75dfc4;
-  --accent-light: #d4fff1;
-  --bg: #e7faf5;
-  --card: #fbfffd;
-  --text: #124d4d;
-  --border: #83d9c6;
-}
-
-/* رسالة الطمأنينة في الوضع الأسود */
-body[data-theme="black"] .daily-message {
-  color: #ffdf82 !important;
-  text-shadow: 0 0 10px rgba(245,196,81,.25);
-}
-
-body[data-theme="black"] .daily-source {
-  color: #e5d2a5 !important;
-}
-
-body[data-theme="black"] .daily-card,
-body[data-theme="black"] .prayer-card,
-body[data-theme="black"] .menu-card {
-  background: #211b10 !important;
-  color: #fff2d2 !important;
-  border-color: #a47a2b !important;
-}
-
-body[data-theme="black"] .menu-card b,
-body[data-theme="black"] .menu-card small,
-body[data-theme="black"] .section-heading h2 {
-  color: #fff0c5 !important;
-}
-
-/* منع بهتان الألوان عند الضغط */
-.menu-card.star-tap,
-.daily-card.star-tap,
-.prayer-card.star-tap {
-  animation: none !important;
-  filter: none !important;
-  opacity: 1 !important;
-}
-
-/* نجوم ذهبية من غير تبييض الخانات */
-.tap-star {
-  color: #fff8d7 !important;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 12px #ffd54a,
-    0 0 24px #ffad00 !important;
-}
-
-/* =================================
-   الأسود الملكي والذهب الخالص
-================================= */
 
 body[data-theme="blackgold"] {
   --main: #080808;
-  --main-light: #171717;
-  --accent: #e8bd55;
-  --accent-light: #ffe9a3;
-  --bg: #050505;
-  --card: #151515;
-  --text: #fff4d6;
-  --muted: #d6c69e;
-  --border: #bd9135;
-
-  background: #050505 !important;
-  color: #fff4d6 !important;
+  --main-light: #24201a;
+  --accent: #e6bd59;
+  --accent-light: #ffe9a6;
+  --bg: #101010;
+  --card: #1b1a17;
+  --text: #fff3d5;
+  --muted: #c1b69d;
+  --border: rgba(230,189,89,.4);
+  --shadow: 0 8px 30px rgba(0,0,0,.35);
+  --glow: rgba(230,189,89,.18);
 }
 
-body[data-theme="blackgold"] .topbar,
-body[data-theme="blackgold"] .bottom-nav,
-body[data-theme="blackgold"] .menu-card,
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  padding: 0 0 95px;
+  background:
+    radial-gradient(circle at 10% 5%, var(--glow), transparent 28%),
+    var(--bg);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  transition: background .3s ease, color .3s ease;
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+/* الشريط العلوي */
+.topbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 16px;
+  background: linear-gradient(135deg, var(--main), var(--main-light));
+  color: #fff;
+  border-bottom: 2px solid var(--accent);
+  box-shadow: 0 5px 22px rgba(0,0,0,.16);
+}
+
+.brand-mark {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border: 2px solid var(--accent);
+  border-radius: 16px;
+  color: var(--accent-light);
+  font-family: 'Amiri', serif;
+  font-size: 30px;
+  font-weight: 700;
+  box-shadow: 0 0 16px var(--glow);
+}
+
+.brand-name {
+  font-family: 'Amiri', serif;
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.brand-tag {
+  color: var(--accent-light);
+  font-size: 10px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 7px;
+  margin-right: auto;
+}
+
+.icon-button {
+  width: 39px;
+  height: 39px;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 13px;
+  background: rgba(255,255,255,.12);
+  color: white;
+  font-size: 19px;
+  transition: .2s;
+}
+
+.icon-button:active {
+  transform: scale(.92);
+}
+
+/* المحتوى الرئيسي */
+main {
+  width: min(100% - 28px, 650px);
+  margin: 20px auto;
+}
+
+/* بطاقة الترحيب */
+.welcome-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 25px 20px;
+  border: 1px solid var(--accent);
+  border-radius: 25px;
+  background: linear-gradient(135deg, var(--main), var(--main-light));
+  color: #fff;
+  box-shadow: 0 12px 30px rgba(0,0,0,.15);
+}
+
+.welcome-glow {
+  position: absolute;
+  z-index: -1;
+  width: 180px;
+  height: 180px;
+  left: -55px;
+  top: -65px;
+  border-radius: 50%;
+  background: var(--glow);
+  filter: blur(35px);
+}
+
+.eyebrow {
+  color: var(--accent-light);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.welcome-card h1 {
+  margin: 10px 0;
+  font-family: 'Amiri', serif;
+  font-size: clamp(23px, 6vw, 31px);
+  line-height: 1.6;
+}
+
+.welcome-copy {
+  color: rgba(255,255,255,.88);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.date-line {
+  margin-top: 17px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,.2);
+  color: var(--accent-light);
+  font-size: 12px;
+}
+
+/* البطاقات */
+.daily-card,
+.prayer-card {
+  position: relative;
+  overflow: hidden;
+  margin-top: 17px;
+  padding: 19px;
+  border: 1px solid var(--border);
+  border-radius: 21px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 13px;
+}
+
+.section-heading h2,
+.prayer-card h2 {
+  font-family: 'Amiri', serif;
+  font-size: 21px;
+  color: var(--main);
+}
+
+.small-label {
+  margin-right: auto;
+  padding: 4px 9px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.daily-message {
+  color: var(--text);
+  font-family: 'Amiri', serif;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 2;
+  text-align: center;
+}
+
+.daily-source {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+}
+
+/* بطاقة الصلاة */
+.prayer-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.prayer-card h2 {
+  margin: 5px 0;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.prayer-icon {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border: 1px solid var(--accent);
+  border-radius: 18px;
+  background: var(--glow);
+  color: var(--accent);
+  font-size: 31px;
+} 
+
+/* عنوان الأقسام */
+.section {
+  margin-top: 25px;
+}
+
+.section > .section-heading {
+  margin-bottom: 15px;
+}
+
+.section > .section-heading h2 {
+  font-size: 22px;
+}
+
+/* شبكة الأقسام */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.menu-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 145px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 17px 9px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--card);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: transform .25s ease, border-color .25s ease;
+}
+
+.menu-card::before,
+.daily-card::before,
+.prayer-card::before {
+  content: "✦";
+  position: absolute;
+  top: 9px;
+  left: 12px;
+  color: var(--accent);
+  font-size: 13px;
+  text-shadow: 0 0 8px var(--accent);
+  animation: starTwinkle 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.menu-card::after {
+  content: "✧";
+  position: absolute;
+  right: 12px;
+  bottom: 9px;
+  color: var(--accent);
+  font-size: 15px;
+  text-shadow: 0 0 9px var(--accent);
+  animation: starTwinkle 2.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.menu-card:active {
+  transform: scale(.96);
+  border-color: var(--accent);
+}
+
+.menu-icon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  background: var(--glow);
+  font-size: 29px;
+  box-shadow: 0 0 15px var(--glow);
+}
+
+.menu-card b {
+  color: var(--main);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.menu-card small {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+/* حركة لمعان النجوم */
+@keyframes starTwinkle {
+  0%, 100% {
+    opacity: .45;
+    transform: scale(.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+/* تفاعل اللمس */
+.menu-card.star-tap,
+.daily-card.star-tap,
+.prayer-card.star-tap {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 12px var(--glow),
+    0 0 25px var(--glow),
+    var(--shadow);
+}
+
+/* رسالة أسفل الأقسام */
+.footer-note {
+  margin: 24px 0;
+  padding: 16px 12px;
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  background: var(--card);
+  color: var(--muted);
+  font-family: 'Amiri', serif;
+  font-size: 16px;
+  text-align: center;
+}
+
+.footer-note span {
+  color: var(--accent);
+  text-shadow: 0 0 9px var(--accent);
+}
+/* شريط التنقل السفلي */
+.bottom-nav {
+  position: fixed;
+  z-index: 50;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 9px 5px calc(9px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--accent);
+  background: var(--card);
+  box-shadow: 0 -5px 22px rgba(0,0,0,.10);
+}
+
+.bottom-nav button {
+  min-width: 62px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.bottom-nav button span {
+  font-size: 21px;
+}
+
+.bottom-nav button.active {
+  color: var(--main);
+  font-weight: 800;
+}
+
+.bottom-nav button.active span {
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--glow);
+}
+
+/* نافذة اختيار المظهر */
+.theme-panel {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(0,0,0,.58);
+  backdrop-filter: blur(5px);
+}
+
+.theme-panel[hidden] {
+  display: none !important;
+}
+
+.theme-box {
+  width: min(100%, 420px);
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 20px;
+  border: 1px solid var(--accent);
+  border-radius: 23px;
+  background: var(--card);
+  color: var(--text);
+  box-shadow: 0 15px 45px rgba(0,0,0,.3);
+}
+
+.theme-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.theme-heading h2 {
+  color: var(--main);
+  font-family: 'Amiri', serif;
+  font-size: 21px;
+}
+
+.theme-heading button {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.theme-box > p {
+  margin: 8px 0 16px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.theme-options {
+  display: grid;
+  gap: 9px;
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: var(--bg);
+  color: var(--text);
+  text-align: right;
+  font-size: 12px;
+}
+
+.theme-option:active {
+  border-color: var(--accent);
+  transform: scale(.98);
+}
+
+.theme-option span {
+  font-size: 19px;
+}
+
+.theme-reset {
+  width: 100%;
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid var(--accent);
+  border-radius: 13px;
+  background: var(--main);
+  color: white;
+  font-weight: 700;
+} 
+/* رسائل التنبيه */
+.toast {
+  position: fixed;
+  z-index: 200;
+  right: 50%;
+  bottom: 90px;
+  width: max-content;
+  max-width: calc(100% - 35px);
+  padding: 12px 18px;
+  border: 1px solid var(--accent);
+  border-radius: 14px;
+  background: var(--main);
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(50%, 15px);
+  transition: .25s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(50%, 0);
+}
+
+/* نافذة الإعدادات */
+.settings-overlay {
+  position: fixed;
+  z-index: 150;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0,0,0,.6);
+  backdrop-filter: blur(5px);
+}
+
+.settings-box {
+  width: min(100%, 430px);
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 21px;
+  border: 1px solid var(--accent);
+  border-radius: 22px;
+  background: var(--card);
+  color: var(--text);
+  box-shadow: 0 15px 40px rgba(0,0,0,.3);
+}
+
+.settings-box h2 {
+  margin-bottom: 15px;
+  color: var(--main);
+  font-family: 'Amiri', serif;
+  font-size: 23px;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 10px 0;
+  padding: 13px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: var(--bg);
+  font-size: 12px;
+}
+
+.setting-item label {
+  color: var(--text);
+}
+
+.setting-item input,
+.setting-item select {
+  max-width: 130px;
+  padding: 7px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--card);
+  color: var(--text);
+}
+
+.settings-action,
+.settings-save,
+.settings-reset,
+.settings-close {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  background: var(--main);
+  color: white;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+}
+
+.settings-close,
+.settings-reset {
+  background: var(--bg);
+  color: var(--main);
+}
+
+/* نجوم زخرفية أعلى الصفحة */
+.intro-sparkles {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.intro-sparkles span {
+  position: absolute;
+  color: var(--accent);
+  opacity: .35;
+  animation: floatSparkle 5s ease-in-out infinite;
+}
+
+@keyframes floatSparkle {
+  0%, 100% {
+    transform: translateY(0) scale(.8);
+    opacity: .2;
+  }
+  50% {
+    transform: translateY(-12px) scale(1.2);
+    opacity: .7;
+  }
+}
+
+/* الوضع الأسود والذهبي */
 body[data-theme="blackgold"] .welcome-card,
+body[data-theme="blackgold"] .topbar {
+  background: linear-gradient(135deg, #050505, #211b10);
+  border-color: #d6ad4d;
+}
+
+body[data-theme="blackgold"] .menu-card,
 body[data-theme="blackgold"] .daily-card,
 body[data-theme="blackgold"] .prayer-card,
-body[data-theme="blackgold"] .theme-box,
-body[data-theme="blackgold"] .settings-box {
-  background: linear-gradient(145deg, #080808, #1b1b1b) !important;
-  color: #fff0c2 !important;
-  border: 1px solid #bd9135 !important;
+body[data-theme="blackgold"] .footer-note {
+  border-color: rgba(230,189,89,.5);
+  background: linear-gradient(145deg, #1c1b18, #111110);
 }
 
-body[data-theme="blackgold"] h1,
-body[data-theme="blackgold"] h2,
-body[data-theme="blackgold"] h3,
-body[data-theme="blackgold"] b,
-body[data-theme="blackgold"] .brand-name,
+body[data-theme="blackgold"] .menu-card b,
+body[data-theme="blackgold"] .section-heading h2,
+body[data-theme="blackgold"] .prayer-card h2 {
+  color: #f1d58d;
+}
+
 body[data-theme="blackgold"] .menu-card small,
-body[data-theme="blackgold"] .daily-message,
 body[data-theme="blackgold"] .muted,
-body[data-theme="blackgold"] p {
-  color: #ffe6a0 !important;
+body[data-theme="blackgold"] .daily-source {
+  color: #c8bea8;
 }
 
-body[data-theme="blackgold"] .icon-button,
-body[data-theme="blackgold"] .theme-option,
-body[data-theme="blackgold"] .settings-action {
-  background: #17130a !important;
-  color: #ffdf80 !important;
-  border: 1px solid #d6a83e !important;
+/* تحسين عرض الشاشات الصغيرة */
+@media (max-width: 380px) {
+  main {
+    width: calc(100% - 20px);
+  }
+
+  .menu-grid {
+    gap: 9px;
+  }
+
+  .menu-card {
+    min-height: 135px;
+    padding: 13px 6px;
+  }
+
+  .menu-card b {
+    font-size: 12px;
+  }
+
+  .brand-name {
+    font-size: 20px;
+  }
+
+  .bottom-nav button {
+    min-width: 55px;
+    font-size: 9px;
+  }
 }
 
-body[data-theme="blackgold"] .menu-card,
-body[data-theme="blackgold"] .daily-card,
-body[data-theme="blackgold"] .prayer-card {
-  box-shadow:
-    0 0 8px rgba(232,189,85,.35),
-    0 0 18px rgba(232,189,85,.16) !important;
-}
-
-body[data-theme="blackgold"] .theme-option.selected,
-body[data-theme="blackgold"] .theme-option.active {
-  background: linear-gradient(135deg, #d5a637, #fff0ad) !important;
-  color: #080808 !important;
-}
+/* تقليل الحركة لمن يفضل ذلك */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+} 
