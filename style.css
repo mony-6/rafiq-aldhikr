@@ -99,3 +99,32 @@ body::before {
   from { opacity: .35; transform: scale(.7) rotate(0deg); }
   to { opacity: 1; transform: scale(1.25) rotate(35deg); }
 }
+/* نجوم متلألئة قوية ومتنوعة */
+.rain-star {
+  position: absolute;
+  top: -20px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff8d6;
+  box-shadow:
+    0 0 8px 3px #ffe68a,
+    0 0 16px 6px #e8c879,
+    0 0 25px 8px #ffffff88;
+  animation: rain 3s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes rain {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(.5);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) translateX(-35px) rotate(360deg) scale(1.5);
+    opacity: 0;
+  }
+}
